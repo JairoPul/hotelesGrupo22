@@ -36,6 +36,14 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "UserGroups.findByGroupname", query = "SELECT u FROM UserGroups u WHERE u.groupname = :groupname")})
 public class UserGroups implements Serializable {
 
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "email")
+    private String email;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,8 +55,6 @@ public class UserGroups implements Serializable {
     @Size(min = 1, max = 32)
     @Column(name = "groupname")
     private String groupname;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clgroup")
-    private Collection<Userrelation> userrelationCollection;
 
     public UserGroups() {
     }
@@ -78,15 +84,6 @@ public class UserGroups implements Serializable {
         this.groupname = groupname;
     }
 
-    @XmlTransient
-    public Collection<Userrelation> getUserrelationCollection() {
-        return userrelationCollection;
-    }
-
-    public void setUserrelationCollection(Collection<Userrelation> userrelationCollection) {
-        this.userrelationCollection = userrelationCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -110,6 +107,18 @@ public class UserGroups implements Serializable {
     @Override
     public String toString() {
         return "com.grupo22.hoteling.UserGroups[ groupid=" + groupid + " ]";
+    }
+
+    public UserGroups(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
 }

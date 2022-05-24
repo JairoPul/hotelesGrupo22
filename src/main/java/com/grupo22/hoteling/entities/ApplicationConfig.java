@@ -33,7 +33,6 @@ public class ApplicationConfig extends Application {
         resources.add(com.grupo22.hoteling.rest.HotelFacadeREST.class);
         resources.add(com.grupo22.hoteling.rest.ReserveFacadeREST.class);
         resources.add(com.grupo22.hoteling.rest.UserGroupsFacadeREST.class);
-        resources.add(com.grupo22.hoteling.rest.UserrelationFacadeREST.class);
         resources.add(com.grupo22.hoteling.rest.UsersFacadeREST.class);
     }
     

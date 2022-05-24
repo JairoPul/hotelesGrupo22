@@ -81,8 +81,6 @@ public class Users implements Serializable {
     @Column(name = "bdate")
     @Temporal(TemporalType.DATE)
     private Date bdate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
-    private Collection<Userrelation> userrelationCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private Collection<Reserve> reserveCollection;
 
@@ -170,15 +168,6 @@ public class Users implements Serializable {
 
     public void setBdate(Date bdate) {
         this.bdate = bdate;
-    }
-
-    @XmlTransient
-    public Collection<Userrelation> getUserrelationCollection() {
-        return userrelationCollection;
-    }
-
-    public void setUserrelationCollection(Collection<Userrelation> userrelationCollection) {
-        this.userrelationCollection = userrelationCollection;
     }
 
     @XmlTransient
