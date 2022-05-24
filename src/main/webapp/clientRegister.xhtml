@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./WEB-INF/template.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <f:event listener="#{clientRegisterView.validatePassword}" type="postValidate" />
+                    <p:panel header="Crear una nueva cuenta">
+                        <h:panelGrid id="grid" columns="3">
+                            <h:outputLabel for="name" value="Nombre y Apellidos:" style="font-weight:bold"/>
+                            <p:inputText id="name" value="#{clientRegisterView.name}" required="true"
+                            requiredMessage="Por favor, introduce tu nombre completo." maxlength="30"/>
+                            <p:message for="name"/>
+                            <h:outputLabel for="email" value="E-Mail:" style="font-weight:bold"/>
+                            <p:inputText id="email" value="#{clientRegisterView.email}" required="true" requiredMessage="Por favor, introduce tu email.">
+                                <f:validator validatorId="emailValidator" />
+                            </p:inputText>
+                            <p:message for="email"/>
+                            
+                            <h:outputLabel for="nif" value="DNI:" style="font-weight:bold"/>
+                            <p:inputText id="nif" value="#{clientRegisterView.nif}" required="true"
+                            requiredMessage="Por favor, introduce tu DNI." maxlength="9"/>
+                            <p:message for="nif"/>
+                            
+                            <h:outputLabel for="bdate" value="Fecha de nacimiento:" style="font-weight:bold"/>
+                            <p:datePicker id="bdate" value="#{clientRegisterView.bdate}"
+                                          pattern="dd/MM/yyyy" locale="es" 
+                                          yearNavigator="true" yearRange="1920:2022" 
+                                          required="true" requiredMessage="Por favor, introduce tu fecha de nacimiento."/>
+                            <p:message for="bdate"/>
+                            
+                            <h:outputLabel for="tel" value="Teléfono:" style="font-weight:bold"/>
+                            <p:inputText id="tel" value="#{clientRegisterView.tel}" required="true"
+                            requiredMessage="Por favor, introduce tu teléfono." maxlength="15" />
+                            <p:message for="tel"/>
+                            
+                            <h:outputLabel for="password" value="Contraseña:" style="font-weight:bold"/>
+                            <p:password id="password" value="#{clientRegisterView.password}" feedback="true"
+                            required="true" requiredMessage="Por favor, introduce tu contraseña."
+                            validatorMessage="La contraseña debe contener al menos un carácter en minúsculas,
+                            un caracter en mayúscula, un número y su longitud debe estar entre 6 y 20
+                            caracteres.">
+                                <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})" />
+                            </p:password>
+                            <p:message for="password"/>
+                            <h:outputLabel for="confirmpassword" value="Confirmar contraseña:" style="font-weight:bold"/>
+                            <p:password id="confirmpassword" feedback="true"
+                            value="#{clientRegisterView.confirmPassword}" required="true"
+                            requiredMessage="Por favor, confirma tu contraseña."/>
+                            <p:message for="confirmpassword"/>
+                        </h:panelGrid>
+                        <p:commandButton action="#{clientRegisterView.register()}" update="grid" value="Regístrate!" icon="uiicon-pencil"/>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
