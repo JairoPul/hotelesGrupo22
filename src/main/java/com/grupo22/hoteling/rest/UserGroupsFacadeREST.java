@@ -22,7 +22,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author Jairo
+ * @author Alvaro
  */
 @Stateless
 @Path("com.grupo22.hoteling.entities.usergroups")
@@ -45,20 +45,20 @@ public class UserGroupsFacadeREST extends AbstractFacade<UserGroups> {
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Integer id, UserGroups entity) {
+    public void edit(@PathParam("id") String id, UserGroups entity) {
         super.edit(entity);
     }
 
     @DELETE
     @Path("{id}")
-    public void remove(@PathParam("id") Integer id) {
+    public void remove(@PathParam("id") String id) {
         super.remove(super.find(id));
     }
 
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public UserGroups find(@PathParam("id") Integer id) {
+    public UserGroups find(@PathParam("id") String id) {
         return super.find(id);
     }
 

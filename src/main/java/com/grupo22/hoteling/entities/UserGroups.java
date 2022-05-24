@@ -6,36 +6,31 @@
 package com.grupo22.hoteling.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Jairo
+ * @author Alvaro
  */
 @Entity
 @Table(name = "user_groups")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "UserGroups.findAll", query = "SELECT u FROM UserGroups u"),
-    @NamedQuery(name = "UserGroups.findByGroupid", query = "SELECT u FROM UserGroups u WHERE u.groupid = :groupid"),
+    @NamedQuery(name = "UserGroups.findByEmail", query = "SELECT u FROM UserGroups u WHERE u.email = :email"),
     @NamedQuery(name = "UserGroups.findByGroupname", query = "SELECT u FROM UserGroups u WHERE u.groupname = :groupname")})
 public class UserGroups implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Id
     @Basic(optional = false)
@@ -43,13 +38,6 @@ public class UserGroups implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "email")
     private String email;
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "groupid")
-    private Integer groupid;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 32)
@@ -59,21 +47,21 @@ public class UserGroups implements Serializable {
     public UserGroups() {
     }
 
-    public UserGroups(Integer groupid) {
-        this.groupid = groupid;
+    public UserGroups(String email) {
+        this.email = email;
     }
 
-    public UserGroups(Integer groupid, String groupname) {
-        this.groupid = groupid;
+    public UserGroups(String email, String groupname) {
+        this.email = email;
         this.groupname = groupname;
     }
 
-    public Integer getGroupid() {
-        return groupid;
+    public String getEmail() {
+        return email;
     }
 
-    public void setGroupid(Integer groupid) {
-        this.groupid = groupid;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getGroupname() {
@@ -87,7 +75,7 @@ public class UserGroups implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (groupid != null ? groupid.hashCode() : 0);
+        hash += (email != null ? email.hashCode() : 0);
         return hash;
     }
 
@@ -98,7 +86,7 @@ public class UserGroups implements Serializable {
             return false;
         }
         UserGroups other = (UserGroups) object;
-        if ((this.groupid == null && other.groupid != null) || (this.groupid != null && !this.groupid.equals(other.groupid))) {
+        if ((this.email == null && other.email != null) || (this.email != null && !this.email.equals(other.email))) {
             return false;
         }
         return true;
@@ -106,19 +94,7 @@ public class UserGroups implements Serializable {
 
     @Override
     public String toString() {
-        return "com.grupo22.hoteling.UserGroups[ groupid=" + groupid + " ]";
-    }
-
-    public UserGroups(String email) {
-        this.email = email;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+        return "com.grupo22.hoteling.entities.UserGroups[ email=" + email + " ]";
     }
     
 }

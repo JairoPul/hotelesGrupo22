@@ -36,6 +36,20 @@ public class UserEJB {
         return user;
     }
     
+    public Users createBusiness(Users user) {
+        try {
+            user.setPassword(AuthenticationUtils.encodeSHA256(user.getPassword()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        UserGroups group = new UserGroups();
+        group.setEmail(user.getEmail());
+        group.setGroupname("business");
+        em.persist(user);
+        em.persist(group);
+        return user;
+    }
+    
     public Users findByEmail(String email) {
         TypedQuery<Users> query = em.createNamedQuery("Users.findByEmail",Users.class);
         query.setParameter("email", email);

@@ -35,3 +35,6 @@ CREATE TABLE Reserve (
     CONSTRAINT FK_UserReserve FOREIGN KEY (customer) REFERENCES Users(email),
     CONSTRAINT FK_HotelReserve FOREIGN KEY (hotel) REFERENCES Hotel(name)
 );
+
+INSERT INTO user_groups(email, groupname) VALUES
+    ('admin@example.com', 'admin');

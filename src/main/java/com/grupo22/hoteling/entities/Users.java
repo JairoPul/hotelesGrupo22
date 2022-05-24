@@ -97,6 +97,15 @@ public class Users implements Serializable {
         this.name = name;
         this.tel = tel;
     }
+    
+    public Users(String name, String email, String password, String nif, Date bdate, int tel) {
+        this.name = name;
+	this.email = email;
+	this.password = password;
+	this.nif = nif;
+	this.bdate = bdate;
+	this.tel = tel;
+    }
 
     public String getEmail() {
         return email;
