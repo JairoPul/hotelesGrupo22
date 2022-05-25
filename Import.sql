@@ -41,5 +41,5 @@ CREATE TABLE Reserve (
 INSERT INTO user_groups(email, groupname) VALUES
     ('admin@admin.com', 'admin');
 
-INSERT INTO users(email, password, name) VALUES
-    ('admin@admin.com','jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=', 'admin');
+INSERT INTO users(email, password, name, tel) VALUES
+    ('admin@admin.com','jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=', 'admin', 0);
