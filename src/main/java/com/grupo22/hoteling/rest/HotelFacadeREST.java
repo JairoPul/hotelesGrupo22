@@ -6,6 +6,7 @@
 package com.grupo22.hoteling.rest;
 
 import com.grupo22.hoteling.entities.Hotel;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -86,6 +87,17 @@ public class HotelFacadeREST extends AbstractFacade<Hotel> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+    
+    public List<String> getCities(){
+        List<Hotel> hotel = findAll();
+        List<String> result = new ArrayList();
+        for(Hotel h : hotel){
+            if(!result.contains(h.getCity().toLowerCase())){
+                result.add(h.getCity().toLowerCase());
+            }
+        }
+        return result;
     }
     
 }

@@ -36,7 +36,7 @@ public class EmailValidator implements Validator {
             return;
         }
         if (!pattern.matcher(value.toString()).matches()) {
-            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error devalidación", value + " no es un email válido."));
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de validación", value + " no es un email válido."));
         }
     }
 }

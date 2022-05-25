@@ -83,6 +83,8 @@ public class Users implements Serializable {
     private Date bdate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private Collection<Reserve> reserveCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    private Collection<Hotel> hotelCollection;
 
     public Users() {
     }
@@ -97,7 +99,7 @@ public class Users implements Serializable {
         this.name = name;
         this.tel = tel;
     }
-    
+        
     public Users(String name, String email, String password, String nif, Date bdate, int tel) {
         this.name = name;
 	this.email = email;
@@ -188,6 +190,15 @@ public class Users implements Serializable {
         this.reserveCollection = reserveCollection;
     }
 
+    @XmlTransient
+    public Collection<Hotel> getHotelCollection() {
+        return hotelCollection;
+    }
+
+    public void setHotelCollection(Collection<Hotel> hotelCollection) {
+        this.hotelCollection = hotelCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -210,7 +221,7 @@ public class Users implements Serializable {
 
     @Override
     public String toString() {
-        return "com.grupo22.hoteling.Users[ email=" + email + " ]";
+        return "com.grupo22.hoteling.entities.Users[ email=" + email + " ]";
     }
     
 }

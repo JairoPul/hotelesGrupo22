@@ -6,6 +6,7 @@ com\grupo22\hoteling\jaas\EmailValidator.class
 com\grupo22\hoteling\rest\ReserveFacadeREST.class
 com\grupo22\hoteling\entities\GenericResource.class
 com\grupo22\hoteling\jaas\ClientRegisterView.class
+com\grupo22\hoteling\jaas\BirthValidator.class
 com\grupo22\hoteling\entities\Users_.class
 com\grupo22\hoteling\rest\UsersFacadeREST.class
 com\grupo22\hoteling\entities\Reserve_.class

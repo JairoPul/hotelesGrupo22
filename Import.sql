@@ -23,7 +23,9 @@ CREATE TABLE Hotel (
     rooms int NOT NULL,
     price float NOT NULL,
     services varchar(255),
-    PRIMARY KEY (name)
+    owner varchar(255) NOT NULL,
+    PRIMARY KEY (name),
+    CONSTRAINT FK_UserHotel FOREIGN KEY (owner) REFERENCES Users(email)
 );
 
 CREATE TABLE Reserve (

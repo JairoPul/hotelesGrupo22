@@ -12,6 +12,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -62,6 +64,9 @@ public class Hotel implements Serializable {
     private String services;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotel")
     private Collection<Reserve> reserveCollection;
+    @JoinColumn(name = "owner", referencedColumnName = "email")
+    @ManyToOne(optional = false)
+    private Users owner;
 
     public Hotel() {
     }
@@ -126,6 +131,14 @@ public class Hotel implements Serializable {
         this.reserveCollection = reserveCollection;
     }
 
+    public Users getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Users owner) {
+        this.owner = owner;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -148,7 +161,7 @@ public class Hotel implements Serializable {
 
     @Override
     public String toString() {
-        return "com.grupo22.hoteling.Hotel[ name=" + name + " ]";
+        return "com.grupo22.hoteling.entities.Hotel[ name=" + name + " ]";
     }
     
 }

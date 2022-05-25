@@ -34,7 +34,9 @@
                             <p:datePicker id="bdate" value="#{clientRegisterView.bdate}"
                                           pattern="dd/MM/yyyy" locale="es" 
                                           yearNavigator="true" yearRange="1920:2022" 
-                                          required="true" requiredMessage="Por favor, introduce tu fecha de nacimiento."/>
+                                          required="true" requiredMessage="Por favor, introduce tu fecha de nacimiento.">
+                                <f:validator validatorId="birthValidator" />
+                            </p:datePicker>
                             <p:message for="bdate"/>
                             
                             <h:outputLabel for="tel" value="Teléfono:" style="font-weight:bold"/>

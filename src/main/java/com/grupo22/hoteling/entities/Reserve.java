@@ -120,7 +120,7 @@ public class Reserve implements Serializable {
 
     @Override
     public String toString() {
-        return "com.grupo22.hoteling.Reserve[ id=" + id + " ]";
+        return "com.grupo22.hoteling.entities.Reserve[ id=" + id + " ]";
     }
     
 }
