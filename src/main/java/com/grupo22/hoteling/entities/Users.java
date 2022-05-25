@@ -81,6 +81,9 @@ public class Users implements Serializable {
     @Column(name = "bdate")
     @Temporal(TemporalType.DATE)
     private Date bdate;
+    @Size(max = 600)
+    @Column(name = "data")
+    private String data;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private Collection<Reserve> reserveCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
@@ -100,6 +103,7 @@ public class Users implements Serializable {
         this.tel = tel;
     }
         
+    // Constructor de Users para clientes
     public Users(String name, String email, String password, String nif, Date bdate, int tel) {
         this.name = name;
 	this.email = email;
@@ -107,6 +111,18 @@ public class Users implements Serializable {
 	this.nif = nif;
 	this.bdate = bdate;
 	this.tel = tel;
+    }
+    
+    // Constructor de Users para empresas
+    public Users(String name, String email, String password, String cif, String address, int tel, Double worth, String data) {
+        this.name = name;
+	this.email = email;
+	this.password = password;
+	this.cif = cif;
+	this.address = address;
+	this.tel = tel;
+        this.worth = worth;
+        this.data = data;
     }
 
     public String getEmail() {
@@ -179,6 +195,14 @@ public class Users implements Serializable {
 
     public void setBdate(Date bdate) {
         this.bdate = bdate;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 
     @XmlTransient

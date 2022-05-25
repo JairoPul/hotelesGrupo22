@@ -15,10 +15,12 @@
                     <f:event listener="#{clientRegisterView.validatePassword}" type="postValidate" />
                     <p:panel header="Crear una nueva cuenta">
                         <h:panelGrid id="grid" columns="3">
+                            
                             <h:outputLabel for="name" value="Nombre y Apellidos:" style="font-weight:bold"/>
                             <p:inputText id="name" value="#{clientRegisterView.name}" required="true"
                             requiredMessage="Por favor, introduce tu nombre completo." maxlength="30"/>
                             <p:message for="name"/>
+                            
                             <h:outputLabel for="email" value="E-Mail:" style="font-weight:bold"/>
                             <p:inputText id="email" value="#{clientRegisterView.email}" required="true" requiredMessage="Por favor, introduce tu email.">
                                 <f:validator validatorId="emailValidator" />
@@ -27,7 +29,10 @@
                             
                             <h:outputLabel for="nif" value="DNI:" style="font-weight:bold"/>
                             <p:inputText id="nif" value="#{clientRegisterView.nif}" required="true"
-                            requiredMessage="Por favor, introduce tu DNI." maxlength="9"/>
+                                         requiredMessage="Por favor, introduce tu DNI." maxlength="9"
+                                         validatorMessage="El DNI debe ser válido">
+                                <f:validateRegex pattern="\d\d\d\d\d\d\d\d[a-zA-Z]" />
+                            </p:inputText>
                             <p:message for="nif"/>
                             
                             <h:outputLabel for="bdate" value="Fecha de nacimiento:" style="font-weight:bold"/>
@@ -53,11 +58,13 @@
                                 <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})" />
                             </p:password>
                             <p:message for="password"/>
+                            
                             <h:outputLabel for="confirmpassword" value="Confirmar contraseña:" style="font-weight:bold"/>
                             <p:password id="confirmpassword" feedback="true"
                             value="#{clientRegisterView.confirmPassword}" required="true"
                             requiredMessage="Por favor, confirma tu contraseña."/>
                             <p:message for="confirmpassword"/>
+                            
                         </h:panelGrid>
                         <p:commandButton action="#{clientRegisterView.register()}" update="grid" value="Regístrate!" icon="uiicon-pencil"/>
                     </p:panel>

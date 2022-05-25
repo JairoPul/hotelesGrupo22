@@ -8,6 +8,7 @@ CREATE TABLE Users (
     worth float,
     nif varchar(15),
     bdate date,
+    data varchar(600),
     PRIMARY KEY (email)
 );
 

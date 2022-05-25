@@ -1,4 +1,5 @@
 com\grupo22\hoteling\entities\Reserve.class
+com\grupo22\hoteling\jaas\BusinessRegisterView.class
 com\grupo22\hoteling\rest\AbstractFacade.class
 com\grupo22\hoteling\entities\Users.class
 com\grupo22\hoteling\jaas\AuthenticationUtils.class
