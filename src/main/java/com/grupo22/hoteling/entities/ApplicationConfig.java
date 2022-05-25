@@ -30,6 +30,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.grupo22.hoteling.entities.GenericResource.class);
+        resources.add(com.grupo22.hoteling.rest.HotelFacadeREST.class);
         resources.add(com.grupo22.hoteling.rest.ReserveFacadeREST.class);
         resources.add(com.grupo22.hoteling.rest.UserGroupsFacadeREST.class);
         resources.add(com.grupo22.hoteling.rest.UsersFacadeREST.class);
