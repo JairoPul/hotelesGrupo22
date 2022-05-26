@@ -100,4 +100,14 @@ public class HotelFacadeREST extends AbstractFacade<Hotel> {
         return result;
     }
     
+    public List<Hotel> findInCity(String city){
+        List<Hotel> hotel = findAll();
+        for(Hotel h : hotel){
+            if(!city.toLowerCase().equals(h.getCity().toLowerCase())){
+                hotel.remove(h);
+            }
+        }
+        return hotel;
+    }
+    
 }
