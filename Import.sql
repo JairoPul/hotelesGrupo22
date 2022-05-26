@@ -9,6 +9,7 @@ CREATE TABLE Users (
     nif varchar(15),
     bdate date,
     data varchar(600),
+    verified boolean,
     PRIMARY KEY (email)
 );
 

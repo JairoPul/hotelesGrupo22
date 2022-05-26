@@ -33,9 +33,13 @@
                             <h:outputText value="#{loginView.authenticatedUser.tel}"/>
                         
                         </h:panelGrid>
-
-                        <p:commandButton action="/users/deleteAccount" value="Eliminar cuenta"
+                        <h:outputLabel value="¿Seguro que quieres eliminar la cuenta?" style="font-weight:bold"/>
+                        <h:panelGrid id="buttons" columns="2">
+                            <p:commandButton action="/users/account" value="No"
+                                         icon="ui-icon-arrowreturnthick-1-w"/>
+                            <p:commandButton action="#{loginView.deleteAccount}" value="Sí"
                                          icon="ui-icon-trash"/>
+                        </h:panelGrid>
                     </p:panel>
                 </h:form>
             </ui:define>
