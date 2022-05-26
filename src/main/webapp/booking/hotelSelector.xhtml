@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/template.xhtml">
+
+            <ui:define name="content">
+                <h2>Hoteles en <font color="red">#{booking.city}</font></h2>
+                <h:form>
+                    <h:selectOneRadio value="#{booking.hotel}" layout="pageDirection" required="true">
+                        <f:selectItems value="#{hotelFacadeREST.findInCity(booking.city)}" var="s" itemValue="#{s}" itemLabel="#{s.same}"/>
+                    </h:selectOneRadio>
+                    <p:commandButton value="Reservar hotel" action="dateSelector" />
+                    <p:commandButton id="back" value="Atrás" action="booking" immediate="true" icon="ui-iconarrowrefresh-1-w"/>
+                </h:form> 
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

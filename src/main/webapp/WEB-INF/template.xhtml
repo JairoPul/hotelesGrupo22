@@ -50,11 +50,11 @@
                                     rendered="#{request.isUserInRole('users')==false and request.isUserInRole('business')==false}" 
                                     icon="ui-icon-key"/>
 
-                        <p:menuitem value="Registro" outcome="/clientRegister.xhtml"
+                        <p:menuitem value="Registro de clientes" outcome="/clientRegister.xhtml"
                                     rendered="#{request.isUserInRole('users')==false and request.isUserInRole('business')==false}" 
                                     icon="ui-icon-pencil"/>
                         
-                        <p:menuitem value="Registro" outcome="/businessRegister.xhtml"
+                        <p:menuitem value="Registro de empresas" outcome="/businessRegister.xhtml"
                                     rendered="#{request.isUserInRole('users')==false and request.isUserInRole('business')==false}" 
                                     icon="ui-icon-pencil"/>
 
