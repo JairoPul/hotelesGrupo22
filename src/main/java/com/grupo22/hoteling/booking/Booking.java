@@ -9,7 +9,12 @@ import java.io.Serializable;
 import javax.faces.flow.FlowScoped;
 import javax.inject.Named;
 import com.grupo22.hoteling.entities.Hotel;
+import com.grupo22.hoteling.entities.Reserve;
+import com.grupo22.hoteling.entities.Users;
 import java.util.Date;
+import javax.faces.context.FacesContext;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -18,12 +23,16 @@ import java.util.Date;
 @Named
 @FlowScoped("booking")
 public class Booking implements Serializable{
+    private Users customer;
     private String city;
     private Hotel hotel;
     private Date date;
     private double price;
     private String card;
     private Date fecha;
+    
+    @PersistenceContext
+    private EntityManager em;
 
     public double getPrice() {
         return price;
@@ -80,5 +89,20 @@ public class Booking implements Serializable{
 
     public void setCity(String city) {
         this.city = city;
+    }
+    
+    public String newReserve(){
+        Reserve reserve = new Reserve();
+        reserve.setCustomer(customer);
+        reserve.setHotel(hotel);
+        reserve.setDay(date);
+        em.persist(reserve);
+        return "confirm";
+        
+    }
+    
+    public String action(Users user){
+        customer = user;
+        return "hotelSelector";
     }
 }

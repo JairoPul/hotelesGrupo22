@@ -18,7 +18,7 @@
                         <f:selectItems value="#{hotelFacadeREST.getCities()}" var="m" itemValue="#{m}" itemLabel="#{m}"/>
                     </p:selectOneMenu>
                 
-                    <p:commandButton id="shows" value="Ver hoteles" action="hotelSelector"/>
+                    <p:commandButton id="shows" value="Ver hoteles" action="#{booking.action(loginView.email)}"/>
                 </h:form>
             </ui:define>
 

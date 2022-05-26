@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -18,15 +19,17 @@
                         minValue="0.00" maxValue="1000.00"/>
                         <p:message for="precio" style="color:blue"/>
                         <p:outputLabel for="tarjeta" value="Tarjeta de credito"/>
-                        <p:inputMask id="tarjeta" value="#{booking.card}" mask="9999-9999-9999-9999" required="true"/>
+                        <p:inputMask id="tarjeta" value="#{booking.card}" mask="9999-9999-9999-9999" required="true">
+                            <f:validator validatorId="cardValidator" />
+                        </p:inputMask>>
                         <p:message for="tarjeta"/>
                         <p:outputLabel for="fecha" value="Fecha de expiracion (mes/año)"/>
                         <p:datePicker id="fecha" view="month" value="#{booking.fecha}" pattern="MM/yyyy" locale="es"
                         yearNavigator="true" yearRange="2022:2030" />
                         <p:message for="fecha"/>
                     </h:panelGrid>
-                    <p/><p:commandButton id="next" value="Confirmar" action="print" update="grid"/>
-                    <p:commandButton id="back" value="Atrás" action="confirm" icon="ui-icon-arrowrefresh-1-w"
+                    <p/><p:commandButton id="next" value="Confirmar" action="#{booking.newReserve()}" update="grid"/>
+                    <p:commandButton id="back" value="Atrás" action="dateSelector" icon="ui-icon-arrowrefresh-1-w"
                     immediate="true"/>
                 </h:form>
             </ui:define>

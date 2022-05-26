@@ -60,6 +60,7 @@
 
                         <p:submenu label ="Usuario" rendered="#{request.isUserInRole('users')}">
                             <p:menuitem value="Mi cuenta" action="/users/account" icon="ui-icon-person"/>
+                            <p:menuitem value="Booking" action="booking"/>
                         </p:submenu>
                         
                         <p:submenu label ="Empresa" rendered="#{request.isUserInRole('business')}">
