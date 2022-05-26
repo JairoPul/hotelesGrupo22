@@ -59,4 +59,27 @@ public class UserEJB {
         } catch (Exception e) {}
         return user;
     }
+    
+    public void deleteUser(Users usuario) {
+        
+        TypedQuery<UserGroups> query = em.createNamedQuery("UserGroups.findByEmail",UserGroups.class);
+        query.setParameter("email", usuario.getEmail());
+        UserGroups usergroup = null;
+        
+        TypedQuery<Users> query2 = em.createNamedQuery("Users.findByEmail",Users.class);
+        query2.setParameter("email", usuario.getEmail());
+        Users user = null;
+        
+        try{
+            usergroup = query.getSingleResult();
+            user = query2.getSingleResult();
+            
+            em.remove(usergroup);
+            em.remove(user);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }
 }

@@ -20,7 +20,7 @@
             <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true" >
                 <h2><h:outputText value="Hoteling"/></h2>
                 <h:form>
-                    <p:toolbar rendered="#{request.isUserInRole('users')}">
+                    <p:toolbar rendered="#{request.isUserInRole('users') or request.isUserInRole('business')}">
                         
                         <f:facet name="left">
                             <p:commandButton type="button" value="New" icon="ui-icon-document"/>
@@ -47,18 +47,22 @@
                         <p:menuitem value="Inicio" outcome="/index.xhtml" icon="ui-icon-home" />
 
                         <p:menuitem value="Iniciar Sesión" outcome="/login.xhtml"
-                                    rendered="#{request.isUserInRole('users')==false}" 
+                                    rendered="#{request.isUserInRole('users')==false and request.isUserInRole('business')==false}" 
                                     icon="ui-icon-key"/>
 
                         <p:menuitem value="Registro" outcome="/clientRegister.xhtml"
-                                    rendered="#{request.isUserInRole('users')==false}" 
+                                    rendered="#{request.isUserInRole('users')==false and request.isUserInRole('business')==false}" 
                                     icon="ui-icon-pencil"/>
                         
                         <p:menuitem value="Registro" outcome="/businessRegister.xhtml"
-                                    rendered="#{request.isUserInRole('users')==false}" 
+                                    rendered="#{request.isUserInRole('users')==false and request.isUserInRole('business')==false}" 
                                     icon="ui-icon-pencil"/>
 
                         <p:submenu label ="Usuario" rendered="#{request.isUserInRole('users')}">
+                            <p:menuitem value="Mi cuenta" action="/users/account" icon="ui-icon-person"/>
+                        </p:submenu>
+                        
+                        <p:submenu label ="Empresa" rendered="#{request.isUserInRole('business')}">
                             <p:menuitem value="Booking" action="booking" icon="ui-icon-cart"/>
                         </p:submenu>
 

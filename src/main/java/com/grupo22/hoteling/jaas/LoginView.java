@@ -66,11 +66,11 @@ public class LoginView implements Serializable{
         this.user = userEJB.findByEmail(request.getUserPrincipal().getName());
 
         if (request.isUserInRole("users")) {
-            return "/users/privatepage?faces-redirect=true";
+            return "/users/welcomepage?faces-redirect=true";
         } else if (request.isUserInRole("business")) {
-            return "/business/privatepage?faces-redirect=true";
+            return "/business/welcomepage?faces-redirect=true";
         } else if (request.isUserInRole("admin")) {
-            return "/admin/privatepage?faces-redirect=true";
+            return "/admin/welcomepage?faces-redirect=true";
         } else {
             return "login";
         }
@@ -81,14 +81,30 @@ public class LoginView implements Serializable{
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         
         try {
-            this.user = null;
             request.logout();
             ((HttpSession) context.getExternalContext().getSession(false)).invalidate();
+            this.user = null;
         } catch (ServletException e) {
             System.out.println("Fallo durante el proceso de logout!");
         }
         
         return "/index?faces-redirect=true";
+    }
+    
+    public String deleteAccount() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        
+        try {
+            request.logout();
+            ((HttpSession) context.getExternalContext().getSession(false)).invalidate();
+            userEJB.deleteUser(this.user);
+            this.user = null;
+        } catch (ServletException e) {
+            System.out.println("Fallo durante el proceso de logout!");
+        }
+        
+        return "/delok?faces-redirect=true";
     }
     
 }
