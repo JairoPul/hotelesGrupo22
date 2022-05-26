@@ -107,4 +107,14 @@ public class LoginView implements Serializable{
         return "/delok?faces-redirect=true";
     }
     
+    public void showVerificationMessage() {        
+        
+        if (!user.isVerified()){
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+                    "La cuenta está pendiente de verificación por parte del administrador.", null));
+        }
+        
+    }
+    
 }

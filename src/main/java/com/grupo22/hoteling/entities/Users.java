@@ -84,6 +84,8 @@ public class Users implements Serializable {
     @Size(max = 600)
     @Column(name = "data")
     private String data;
+    @Column(name = "verified")
+    private boolean verified;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private Collection<Reserve> reserveCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
@@ -123,6 +125,7 @@ public class Users implements Serializable {
 	this.tel = tel;
         this.worth = worth;
         this.data = data;
+        this.verified = false;
     }
 
     public String getEmail() {
@@ -203,6 +206,14 @@ public class Users implements Serializable {
 
     public void setData(String data) {
         this.data = data;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
     }
 
     @XmlTransient

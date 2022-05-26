@@ -8,21 +8,22 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.7.v20200504-rNA", date="2022-05-26T10:39:36")
+@Generated(value="EclipseLink-2.7.7.v20200504-rNA", date="2022-05-26T11:56:25")
 @StaticMetamodel(Users.class)
 public class Users_ { 
 
     public static volatile SingularAttribute<Users, String> cif;
-    public static volatile SingularAttribute<Users, String> password;
     public static volatile SingularAttribute<Users, String> address;
     public static volatile SingularAttribute<Users, Date> bdate;
     public static volatile SingularAttribute<Users, String> data;
     public static volatile CollectionAttribute<Users, Reserve> reserveCollection;
+    public static volatile SingularAttribute<Users, Boolean> verified;
+    public static volatile SingularAttribute<Users, String> nif;
+    public static volatile SingularAttribute<Users, Double> worth;
+    public static volatile SingularAttribute<Users, String> password;
     public static volatile CollectionAttribute<Users, Hotel> hotelCollection;
     public static volatile SingularAttribute<Users, String> name;
-    public static volatile SingularAttribute<Users, String> nif;
     public static volatile SingularAttribute<Users, Integer> tel;
     public static volatile SingularAttribute<Users, String> email;
-    public static volatile SingularAttribute<Users, Double> worth;
 
 }

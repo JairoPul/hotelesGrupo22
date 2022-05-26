@@ -63,7 +63,7 @@
                         </p:submenu>
                         
                         <p:submenu label ="Empresa" rendered="#{request.isUserInRole('business')}">
-                            <p:menuitem value="Booking" action="booking" icon="ui-icon-cart"/>
+                            <p:menuitem value="Mi cuenta" action="/business/account" icon="ui-icon-person"/>
                         </p:submenu>
 
                         <p:submenu label ="Administrador" rendered="#{request.isUserInRole('admin')}">

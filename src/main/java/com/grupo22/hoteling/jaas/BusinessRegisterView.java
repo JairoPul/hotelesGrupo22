@@ -7,7 +7,6 @@ package com.grupo22.hoteling.jaas;
 
 import com.grupo22.hoteling.entities.Users;
 import java.io.Serializable;
-import java.util.Date;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -148,7 +147,7 @@ public class BusinessRegisterView implements Serializable{
     
     public String register() {
         Users user = new Users(name, email, password, cif, address, tel, worth, data);
-        userEJB.createUser(user);
+        userEJB.createBusiness(user);
         System.out.println("Nuevo usuario creado con e-mail: " + email
                 + " y nombre:" + name);
         return "regok";

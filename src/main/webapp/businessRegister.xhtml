@@ -42,12 +42,16 @@
                             
                             <h:outputLabel for="tel" value="Teléfono:" style="font-weight:bold"/>
                             <p:inputText id="tel" value="#{businessRegisterView.tel}" required="true"
-                            requiredMessage="Por favor, introduce el número de teléfono." maxlength="15" />
+                                         requiredMessage="Por favor, introduce el número de teléfono." maxlength="15"
+                                         converterMessage="Introduce un número de teléfono válido."/>
                             <p:message for="tel"/>
                             
                             <h:outputLabel for="worth" value="Capital social (en €):" style="font-weight:bold"/>
                             <p:inputText id="worth" value="#{businessRegisterView.worth}" required="true"
-                            requiredMessage="Por favor, introduce el capital social." />
+                                         requiredMessage="Por favor, introduce el capital social."
+                                         converterMessage="El capital social debe ser un número.">
+                                <f:convertNumber pattern="0.00"/>
+                            </p:inputText>
                             <p:message for="worth"/>
                             
                             <h:outputLabel for="data" value="Datos del registro mercantil:" style="font-weight:bold"/>
