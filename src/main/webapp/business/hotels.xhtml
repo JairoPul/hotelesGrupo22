@@ -15,6 +15,9 @@
                     <h:form>
                         <h1><h:outputText value="Actualmente están ofertados
                                 #{hotelClientBean.getNumberHotelsFromCompany()} hotel(es):"/></h1>
+                        <p:commandButton action="/business/addHotel" 
+                                 value="Añadir hotel"
+                                 icon="ui-icon-plusthick"/>
                         <p:dataTable value="#{hotelClientBean.getHotelsFromCompany()}" var="item">
                             <p:column>
                                 <f:facet name="header">
@@ -45,11 +48,20 @@
                                     <h:outputText value="Servicios"/>
                                 </f:facet>
                                 <h:outputText value="#{item.services}"/>
-                            </p:column>                            
+                            </p:column>
+                            <p:column>
+                                <p:commandButton action="/business/modifyHotel" 
+                                         actionListener="#{hotelBackingBean.saveHotel(item)}"
+                                         value="Modificar hotel"
+                                         icon="ui-icon-pencil"/>
+                            
+                                <p:commandButton action="/business/deleteHotel" 
+                                                 actionListener="#{hotelBackingBean.saveHotel(item)}"
+                                         value="Eliminar hotel  "
+                                         icon="ui-icon-trash"/>
+                            </p:column>
                         </p:dataTable>
-                        <p:commandButton action="/business/addHotel" 
-                                         value="Añadir hotel"
-                                         icon="ui-icon-plusthick"/>
+                        
                     </h:form>
                 </f:view>
             </ui:define>

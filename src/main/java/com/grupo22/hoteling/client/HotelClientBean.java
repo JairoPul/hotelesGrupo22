@@ -76,4 +76,27 @@ public class HotelClientBean {
         h.setOwner(loginBean.getAuthenticatedUser());
         target.request().post(Entity.entity(h, MediaType.APPLICATION_XML));
     }
+    
+    public void deleteHotel() {
+        target.path("{id}")
+              .resolveTemplate("id", hotelBean.getId())
+              .request()
+              .delete();;
+    }
+    
+    public void modifyHotel() {
+        Hotel h = new Hotel();
+        h.setId(hotelBean.getId());
+        h.setName(hotelBean.getName());
+        h.setCity(hotelBean.getCity());
+        h.setRooms(hotelBean.getRooms());
+        h.setPrice(hotelBean.getPrice());
+        h.setServices(hotelBean.getServices());
+        h.setOwner(loginBean.getAuthenticatedUser());
+        target.path("{id}")
+              .resolveTemplate("id", hotelBean.getId())
+              .request()
+              .put(Entity.entity(h, MediaType.APPLICATION_XML));
+    }
+    
 }

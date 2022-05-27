@@ -49,7 +49,7 @@ public class Hotel implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Integer id;
+    private int id;
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @NotNull

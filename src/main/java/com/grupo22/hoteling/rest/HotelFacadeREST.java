@@ -24,7 +24,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author Jairo
+ * @author Alvaro
  */
 @Stateless
 @Path("com.grupo22.hoteling.entities.hotel")
@@ -47,20 +47,20 @@ public class HotelFacadeREST extends AbstractFacade<Hotel> {
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") String id, Hotel entity) {
+    public void edit(@PathParam("id") Integer id, Hotel entity) {
         super.edit(entity);
     }
 
     @DELETE
     @Path("{id}")
-    public void remove(@PathParam("id") String id) {
+    public void remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));
     }
 
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Hotel find(@PathParam("id") String id) {
+    public Hotel find(@PathParam("id") Integer id) {
         return super.find(id);
     }
 
@@ -70,7 +70,7 @@ public class HotelFacadeREST extends AbstractFacade<Hotel> {
     public List<Hotel> findAll() {
         return super.findAll();
     }
-
+    
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -84,7 +84,7 @@ public class HotelFacadeREST extends AbstractFacade<Hotel> {
     public String countREST() {
         return String.valueOf(super.count());
     }
-
+    
     @Override
     protected EntityManager getEntityManager() {
         return em;

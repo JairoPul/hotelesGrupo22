@@ -22,7 +22,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author Jairo
+ * @author Alvaro
  */
 @Stateless
 @Path("com.grupo22.hoteling.entities.reserve")

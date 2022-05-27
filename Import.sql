@@ -1,5 +1,5 @@
 CREATE TABLE Users (
-    id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     email varchar(255) UNIQUE NOT NULL,
     password varchar(64) NOT NULL,
     name varchar(50) NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE User_groups (
 );
 
 CREATE TABLE Hotel (
-    id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name varchar(255) UNIQUE NOT NULL,
     city varchar(255) NOT NULL,
     rooms int NOT NULL,

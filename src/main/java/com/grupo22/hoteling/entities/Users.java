@@ -50,7 +50,7 @@ public class Users implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Integer id;
+    private int id;
     @Column(name = "verified")
     private Boolean verified;
 

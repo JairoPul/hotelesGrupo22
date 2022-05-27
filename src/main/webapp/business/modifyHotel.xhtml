@@ -7,13 +7,11 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
-
         <ui:composition template="./../WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <f:event type="preRenderView" listener="#{hotelBackingBean.flush}"/>
                 <h:form>
-                    <p:panel header="Crear una nueva cuenta">
+                    <p:panel header="Datos del hotel">
                         <h:panelGrid id="grid" columns="3">
                             <h:outputLabel for="name" value="Nombre del hotel:"
                                            style="font-weight:bold"/>
@@ -55,8 +53,17 @@
                                          maxlength="100"/>
                             <p:message for="services"/>
                         </h:panelGrid>
-                        <p:commandButton action="/business/hotels" update="grid" value="Atrás" icon="ui-icon-arrowreturnthick-1-w"/>
-                        <p:commandButton action="/business/hotels" actionListener="#{hotelClientBean.addHotel}" update="grid" value="Añadir hotel" icon="uiicon-plusthick"/>
+                        
+                        <h:panelGrid id="buttons" columns="2">
+                            <p:commandButton action="/business/hotels" value="Cancelar"
+                                         update="grid"
+                                         icon="ui-icon-arrowreturnthick-1-w"/>
+                            <p:commandButton action="/business/hotels" 
+                                         actionListener="#{hotelClientBean.modifyHotel}" 
+                                         update="grid"
+                                         value="Guardar"
+                                         icon="ui-icon-disk"/>
+                        </h:panelGrid>
                     </p:panel>
                 </h:form>
             </ui:define>
