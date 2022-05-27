@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -36,11 +38,19 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Hotel.findByCity", query = "SELECT h FROM Hotel h WHERE h.city = :city"),
     @NamedQuery(name = "Hotel.findByRooms", query = "SELECT h FROM Hotel h WHERE h.rooms = :rooms"),
     @NamedQuery(name = "Hotel.findByPrice", query = "SELECT h FROM Hotel h WHERE h.price = :price"),
-    @NamedQuery(name = "Hotel.findByServices", query = "SELECT h FROM Hotel h WHERE h.services = :services")})
+    @NamedQuery(name = "Hotel.findByServices", query = "SELECT h FROM Hotel h WHERE h.services = :services"),
+    @NamedQuery(name = "Hotel.findByCompany", query = "SELECT h FROM Hotel h WHERE h.owner = ("
+            + "SELECT u FROM Users u WHERE u.id = :id)"),
+    @NamedQuery(name = "Hotel.countByCompany", query = "SELECT COUNT(h) FROM Hotel h WHERE h.owner = ("
+            + "SELECT u FROM Users u WHERE u.id = :id)")})
 public class Hotel implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
+    private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -71,6 +81,10 @@ public class Hotel implements Serializable {
     public Hotel() {
     }
 
+     public Hotel(Integer id) {
+        this.id = id;
+    }
+    
     public Hotel(String name) {
         this.name = name;
     }
@@ -80,6 +94,14 @@ public class Hotel implements Serializable {
         this.city = city;
         this.rooms = rooms;
         this.price = price;
+    }
+    
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -160,5 +182,7 @@ public class Hotel implements Serializable {
     public String toString() {
         return "com.grupo22.hoteling.entities.Hotel[ name=" + name + " ]";
     }
-    
+
+   
+
 }

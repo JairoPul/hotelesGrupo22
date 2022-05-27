@@ -12,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -44,9 +46,17 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Users.findByBdate", query = "SELECT u FROM Users u WHERE u.bdate = :bdate")})
 public class Users implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
+    @Column(name = "verified")
+    private Boolean verified;
+
     private static final long serialVersionUID = 1L;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Id
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -84,14 +94,16 @@ public class Users implements Serializable {
     @Size(max = 600)
     @Column(name = "data")
     private String data;
-    @Column(name = "verified")
-    private boolean verified;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private Collection<Reserve> reserveCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Collection<Hotel> hotelCollection;
 
     public Users() {
+    }
+    
+    public Users(Integer id) {
+        this.id = id;
     }
 
     public Users(String email) {
@@ -208,13 +220,6 @@ public class Users implements Serializable {
         this.data = data;
     }
 
-    public boolean isVerified() {
-        return verified;
-    }
-
-    public void setVerified(boolean verified) {
-        this.verified = verified;
-    }
 
     @XmlTransient
     public Collection<Reserve> getReserveCollection() {
@@ -257,6 +262,22 @@ public class Users implements Serializable {
     @Override
     public String toString() {
         return "com.grupo22.hoteling.entities.Users[ email=" + email + " ]";
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(Boolean verified) {
+        this.verified = verified;
     }
     
 }

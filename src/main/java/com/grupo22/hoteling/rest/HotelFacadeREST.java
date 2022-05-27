@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -87,6 +88,32 @@ public class HotelFacadeREST extends AbstractFacade<Hotel> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+    
+    @GET
+    @Path("company/{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Hotel> findAllFromCompany(@PathParam("id") int id) {
+        try {
+            return em.createNamedQuery("Hotel.findByCompany", Hotel.class)
+                     .setParameter("id", id)
+                     .getResultList();
+        } catch (NoResultException e) {
+            return null;  
+        }
+    }
+    
+    @GET
+    @Path("company/{id}/count")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String countFromCompany(@PathParam("id") int id) {
+        try {
+            return String.valueOf(em.createNamedQuery("Hotel.countByCompany", Integer.class)
+                     .setParameter("id", id)
+                     .getSingleResult());
+        } catch (NoResultException e) {
+            return null;  
+        }
     }
     
     public List<String> getCities(){

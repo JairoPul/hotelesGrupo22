@@ -46,7 +46,8 @@
                             
                             <h:outputLabel for="tel" value="Teléfono:" style="font-weight:bold"/>
                             <p:inputText id="tel" value="#{clientRegisterView.tel}" required="true"
-                            requiredMessage="Por favor, introduce tu teléfono." maxlength="15" />
+                            requiredMessage="Por favor, introduce tu teléfono." maxlength="15"
+                            converterMessage="Introduce un número de teléfono válido."/>
                             <p:message for="tel"/>
                             
                             <h:outputLabel for="password" value="Contraseña:" style="font-weight:bold"/>
