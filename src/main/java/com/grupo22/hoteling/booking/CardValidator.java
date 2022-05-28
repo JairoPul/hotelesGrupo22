@@ -29,23 +29,18 @@ public class CardValidator implements Validator{
 
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-        String tarjeta = value.toString();
+        String tarjeta = value.toString().replace("-", "");
         Client client = ClientBuilder.newClient();
-        WebTarget target = client.target("http://valdavia.infor.uva.es:8080/hoteling/webresources/tarjetas?tarjeta="+tarjeta);
-        Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
-        Response response = invocationBuilder.get();
-        String output = response.readEntity(String.class);
-        JSONObject json = new JSONObject(output);
-        JSONArray tarjetas = json.getJSONArray("tarjeta");
-        int place = 0;
-        for(int i = 0; i<tarjetas.length(); i++){
-            if(tarjetas.getJSONObject(i).getString("tarjeta").equalsIgnoreCase(tarjeta)){
-                place = i;
-                break;
+        WebTarget target = client.target("http://valdavia.infor.uva.es:8080/hoteling/webresources/tarjetas");
+        try{
+            String response = target.path("{tarjeta}").resolveTemplate("tarjeta",tarjeta).request(MediaType.APPLICATION_JSON).get(String.class);
+            JSONObject json = new JSONObject(response);
+            if (json.get("autorizada")=="no"){
+                throw new Exception();
             }
-        }
-        if (!"si".equalsIgnoreCase(json.getJSONArray("tarjeta").getJSONObject(place).getString("autorizada")))
+        } catch (Exception e) {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de validación", value + " no es una tarjeta válida."));
+        }
     }
     
 }

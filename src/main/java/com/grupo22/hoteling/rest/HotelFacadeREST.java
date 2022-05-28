@@ -6,7 +6,6 @@
 package com.grupo22.hoteling.rest;
 
 import com.grupo22.hoteling.entities.Hotel;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -116,25 +115,29 @@ public class HotelFacadeREST extends AbstractFacade<Hotel> {
         }
     }
     
-    public List<String> getCities(){
-        List<Hotel> hotel = findAll();
-        List<String> result = new ArrayList();
-        for(Hotel h : hotel){
-            if(!result.contains(h.getCity().toLowerCase())){
-                result.add(h.getCity().toLowerCase());
-            }
+    @GET
+    @Path("cities")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<String> findCities(){
+        try {
+            return em.createNamedQuery("Hotel.findCities", String.class)
+                     .getResultList();
+        } catch (NoResultException e) {
+            return null;  
         }
-        return result;
     }
     
-    public List<Hotel> findInCity(String city){
-        List<Hotel> hotel = findAll();
-        for(Hotel h : hotel){
-            if(!city.toLowerCase().equals(h.getCity().toLowerCase())){
-                hotel.remove(h);
-            }
+    @GET
+    @Path("city/{city}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Hotel> findInCity(@PathParam("city") String city){
+        try {
+            return em.createNamedQuery("Hotel.findByCity", Hotel.class)
+                     .setParameter("city", city)
+                     .getResultList();
+        } catch (NoResultException e) {
+            return null;  
         }
-        return hotel;
     }
     
 }

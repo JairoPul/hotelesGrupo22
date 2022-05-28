@@ -60,6 +60,7 @@
 
                         <p:submenu label ="Usuario" rendered="#{request.isUserInRole('users')}">
                             <p:menuitem value="Mi cuenta" outcome="/users/account" icon="ui-icon-person"/>
+                            <p:menuitem value="Mis reservas" outcome="/users/reserves" icon="ui-icon-suitcase"/>
                             <p:menuitem value="Booking" action="booking"/>
                             <p:menuitem value="Chat" outcome="/chat/chatroom.xhtml" />
                         </p:submenu>

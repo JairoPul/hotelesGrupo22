@@ -3,23 +3,49 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./../WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <h2><font color="red">#{booking.hotel.getName()}</font></h2>
+                <h2><font color="red">#{booking.hotel.name}</font></h2>
                 <h:form>
-                    Ciudad: #{booking.city}<p/>
-                    Precio habitación: #{booking.hotel.getPrice()}<p/>
-                    
-                    <h:outputLabel value="Fecha a reservar:" />
-                    <p:datePicker value="#{booking.date}" pattern="dd/MM/yyyy" locale="es" yearNavigator="true" mindate="#{booking.currentDate}" 
-                                  required="true" requiredMessage="Por favor, introduce una fecha." />
-                    <p/><p:commandButton id="next" value="Pagar la reserva" action="card"/>
-                    <p:commandButton id="back" value="Atrás" action="hotelSelector" icon="ui-iconarrowrefresh-1-w"/>
+                    <p:panel header="Datos del hotel:">
+                        <h:panelGrid id="grid" columns ="3">
+
+                            <h:outputLabel for="city"
+                                           value="Ciudad:" 
+                                           style="font-weight:bold"/>
+                            <h:outputText id="city" value="#{booking.city}"/>
+                            <p:message for="city"/>
+
+                            <h:outputLabel for="price" 
+                                           value="Precio habitación:"
+                                           style="font-weight:bold"/>
+                            <h:outputText id="price" value="#{booking.hotel.price}">
+                                <f:convertNumber type="currency"/>
+                            </h:outputText>
+                            <p:message for="price"/>
+
+                            <h:outputLabel for="date" 
+                                           value="Fecha a reservar:" />
+                            <p:datePicker id="date" value="#{booking.date}" 
+                                          pattern="dd/MM/yyyy" locale="es" 
+                                          yearNavigator="true" mindate="#{booking.currentDate}" 
+                                          required="true" 
+                                          requiredMessage="Por favor, introduce una fecha." />
+                            <p:message for="date"/>
+                        
+                        </h:panelGrid>
+                        
+                        <h:panelGrid id="buttons" columns="2">
+                            <p:commandButton id="next" value="Pagar la reserva" action="card" update="grid"/>
+                            <p:commandButton id="back" value="Atrás" action="hotelSelector" icon="ui-iconarrowrefresh-1-w"/>
+                        </h:panelGrid>
+                    </p:panel>
                 </h:form>
             </ui:define>
 

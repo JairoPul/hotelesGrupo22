@@ -17,7 +17,9 @@
                         <p:panelGrid id="info" columns="3">
                             <h:outputText value="Hotel: #{booking.hotel.name}"/>
                             <h:outputText value="Ciudad: #{booking.city}"/>
-                            <h:outputText value="Fecha: #{booking.date}"/>
+                            <h:outputText value="Fecha: #{booking.date}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+2"/>
+                            </h:outputText>
                         </p:panelGrid>
                         <p:panelGrid columns="2">
                             <h:outputText value="Precio:"/>

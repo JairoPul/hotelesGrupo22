@@ -12,7 +12,6 @@ import com.grupo22.hoteling.entities.Hotel;
 import com.grupo22.hoteling.entities.Reserve;
 import com.grupo22.hoteling.entities.Users;
 import java.util.Date;
-import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -82,7 +81,7 @@ public class Booking implements Serializable{
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
     }
-
+    
     public String getCity() {
         return city;
     }
@@ -91,18 +90,8 @@ public class Booking implements Serializable{
         this.city = city;
     }
     
-    public String newReserve(){
-        Reserve reserve = new Reserve();
-        reserve.setCustomer(customer);
-        reserve.setHotel(hotel);
-        reserve.setDay(date);
-        em.persist(reserve);
-        return "confirm";
-        
-    }
-    
-    public String action(Users user){
-        customer = user;
-        return "hotelSelector";
+    public double storeHotel(Hotel h) {
+        this.hotel = h;
+        return h.getPrice();
     }
 }

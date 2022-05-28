@@ -13,12 +13,12 @@
             <ui:define name="content">
                 <h2>Hoteles en <font color="red">#{booking.city}</font></h2>
                 <h:form>
-                    <h:selectOneRadio value="#{booking.hotel}" layout="pageDirection" required="true">
-                        <f:selectItems value="#{hotelFacadeREST.findInCity(booking.city)}" var="s" itemValue="#{s}" itemLabel="#{s.same}"/>
+                    <h:selectOneRadio value="#{booking.price}" layout="pageDirection" required="true">
+                        <f:selectItems value="#{bookingClientBean.findHotelsInCity(booking.city)}" var="s" itemValue="#{booking.storeHotel(s)}" itemLabel="#{s.name}"/>
                     </h:selectOneRadio>
                     <p:commandButton value="Reservar hotel" action="dateSelector" />
                     <p:commandButton id="back" value="Atrás" action="booking" immediate="true" icon="ui-iconarrowrefresh-1-w"/>
-                </h:form> 
+                </h:form>
             </ui:define>
 
         </ui:composition>

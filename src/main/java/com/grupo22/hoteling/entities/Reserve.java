@@ -33,7 +33,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Reserve.findAll", query = "SELECT r FROM Reserve r"),
     @NamedQuery(name = "Reserve.findById", query = "SELECT r FROM Reserve r WHERE r.id = :id"),
-    @NamedQuery(name = "Reserve.findByDay", query = "SELECT r FROM Reserve r WHERE r.day = :day")})
+    @NamedQuery(name = "Reserve.findByDay", query = "SELECT r FROM Reserve r WHERE r.day = :day"),
+    @NamedQuery(name = "Reserve.findByCustomer", query = "SELECT r FROM Reserve r WHERE r.customer = ("
+            + "SELECT u FROM Users u WHERE u.id = :id)")})
 public class Reserve implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -61,6 +63,12 @@ public class Reserve implements Serializable {
         this.id = id;
     }
 
+    public Reserve(Date day, Hotel hotel, Users customer) {
+        this.day = day;
+        this.hotel = hotel;
+        this.customer = customer;
+    }
+    
     public Reserve(Integer id, Date day) {
         this.id = id;
         this.day = day;

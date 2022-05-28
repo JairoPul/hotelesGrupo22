@@ -9,6 +9,7 @@ import com.grupo22.hoteling.entities.Reserve;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -87,5 +88,19 @@ public class ReserveFacadeREST extends AbstractFacade<Reserve> {
     protected EntityManager getEntityManager() {
         return em;
     }
+    
+    @GET
+    @Path("customer/{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Reserve> findAllFromCustomer(@PathParam("id") int id) {
+        try {
+            return em.createNamedQuery("Reserve.findByCustomer", Reserve.class)
+                     .setParameter("id", id)
+                     .getResultList();
+        } catch (NoResultException e) {
+            return null;  
+        }
+    }
+    
     
 }

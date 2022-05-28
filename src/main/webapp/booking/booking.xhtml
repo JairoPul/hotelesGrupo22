@@ -15,10 +15,10 @@
                 
                 <h:form>
                     <p:selectOneMenu id="longItemLabel" value="#{booking.city}" required="true">
-                        <f:selectItems value="#{hotelFacadeREST.getCities()}" var="m" itemValue="#{m}" itemLabel="#{m}"/>
+                        <f:selectItems value="#{bookingClientBean.findCities()}" var="m" itemValue="#{m}" itemLabel="#{m}"/>
                     </p:selectOneMenu>
                 
-                    <p:commandButton id="shows" value="Ver hoteles" action="#{booking.action(loginView.email)}"/>
+                    <p:commandButton id="shows" value="Ver hoteles" action="hotelSelector"/>
                 </h:form>
             </ui:define>
 

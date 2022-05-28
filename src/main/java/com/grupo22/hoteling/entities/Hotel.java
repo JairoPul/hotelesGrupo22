@@ -42,7 +42,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Hotel.findByCompany", query = "SELECT h FROM Hotel h WHERE h.owner = ("
             + "SELECT u FROM Users u WHERE u.id = :id)"),
     @NamedQuery(name = "Hotel.countByCompany", query = "SELECT COUNT(h) FROM Hotel h WHERE h.owner = ("
-            + "SELECT u FROM Users u WHERE u.id = :id)")})
+            + "SELECT u FROM Users u WHERE u.id = :id)"),
+    @NamedQuery(name = "Hotel.findCities", query = "SELECT h.city FROM Hotel h")})
 public class Hotel implements Serializable {
 
     @Id
