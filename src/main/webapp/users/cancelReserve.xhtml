@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/template.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:panel header="Datos del hotel">
+                        <h:panelGrid id="grid" columns ="2">
+
+                            <h:outputLabel value="Nombre del hotel:" style="font-weight:bold"/>
+                            <h:outputText value="#{reserveBackingBean.hotel.name}"/>
+
+                            <h:outputLabel value="Ciudad:" style="font-weight:bold"/>
+                            <h:outputText value="#{reserveBackingBean.hotel.city}"/>
+
+                            <h:outputLabel value="Fecha:" style="font-weight:bold"/>
+                            <h:outputText value="#{reserveBackingBean.day}"/>
+                            
+                            <h:outputLabel value="Precio por habitación:" style="font-weight:bold"/>
+                            <h:outputText value="#{reserveBackingBean.hotel.price}"/>
+                        
+                        </h:panelGrid>
+                        <h:outputLabel value="¿Seguro que quieres cancelar la reserva?" style="font-weight:bold"/>
+                        <h:panelGrid id="buttons" columns="2">
+                            <p:commandButton action="/users/reserves" value="No"
+                                         icon="ui-icon-arrowreturnthick-1-w"/>
+                            <p:commandButton action="/users/reserves" 
+                                         actionListener="#{reserveClientBean.cancelReserve()}" 
+                                         value="Sí"
+                                         icon="ui-icon-trash"/>
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

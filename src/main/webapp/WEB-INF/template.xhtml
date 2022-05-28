@@ -61,14 +61,14 @@
                         <p:submenu label ="Usuario" rendered="#{request.isUserInRole('users')}">
                             <p:menuitem value="Mi cuenta" outcome="/users/account" icon="ui-icon-person"/>
                             <p:menuitem value="Mis reservas" outcome="/users/reserves" icon="ui-icon-suitcase"/>
-                            <p:menuitem value="Booking" action="booking"/>
-                            <p:menuitem value="Chat" outcome="/chat/chatroom.xhtml" />
+                            <p:menuitem value="Booking" action="booking" icon="ui-icon-bookmark"/>
+                            <p:menuitem value="Chat" outcome="/chat/chatroom.xhtml" icon="ui-icon-comment" />
                         </p:submenu>
                         
                         <p:submenu label ="Empresa" rendered="#{request.isUserInRole('business')}">
                             <p:menuitem value="Mi cuenta" outcome="/business/account" icon="ui-icon-person"/>
                             <p:menuitem value="Mis hoteles" outcome="/business/hotels.xhtml" icon="ui-icon-calculator"/>
-                            <p:menuitem value="Chat" outcome="/chat/chatroom.xhtml" />
+                            <p:menuitem value="Chat" outcome="/chat/chatroom.xhtml" icon="ui-icon-comment"/>
                         </p:submenu>
 
                         <p:submenu label ="Administrador" rendered="#{request.isUserInRole('admin')}">

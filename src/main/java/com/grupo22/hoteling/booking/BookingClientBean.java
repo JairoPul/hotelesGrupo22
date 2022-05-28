@@ -63,7 +63,10 @@ public class BookingClientBean {
     
     public String newReserve(Date day, Hotel hotel){
         Reserve r = new Reserve(day,hotel,loginBean.getAuthenticatedUser());
-        target.request().post(Entity.entity(r, MediaType.APPLICATION_XML));
+        ClientBuilder.newClient()
+                .target("http://localhost:8080/hotelesGrupo22/webresources/com.grupo22.hoteling.entities.reserve")
+                .request()
+                .post(Entity.entity(r, MediaType.APPLICATION_XML));
         return "confirm";
     }
 }

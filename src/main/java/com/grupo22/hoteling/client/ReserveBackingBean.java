@@ -60,7 +60,7 @@ public class ReserveBackingBean implements Serializable {
         this.customer = customer;
     }
     
-    public void saveReserve(Reserve r) {
+    public void storeReserve(Reserve r) {
         this.id = r.getId();
         this.day = r.getDay();
         this.hotel = r.getHotel();

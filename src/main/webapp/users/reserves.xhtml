@@ -14,7 +14,7 @@
                 <f:view>
                     <h:form>
                         <h1><h:outputText value="Tus reservas:"/></h1>
-                        <p:dataTable value="#{hotelClientBean.getReservesFromClient()}" var="item">
+                        <p:dataTable value="#{reserveClientBean.getReservesFromCustomer()}" var="item">
                             <p:column>
                                 <f:facet name="header">
                                     <h:outputText value="Nombre del hotel"/>
@@ -32,18 +32,20 @@
                                     <h:outputText value="Fecha"/>
                                 </f:facet>
                                 <h:outputText value="#{item.day}">
-                                    <f:convertDateTime pattern="dd/mm/yyyy"/>  
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
                                 </h:outputText>
                             </p:column>
                             <p:column>
                                 <f:facet name="header">
                                     <h:outputText value="Precio por habitación"/>
                                 </f:facet>
-                                <h:outputText value="#{item.hotel.price}€"/>
+                                <h:outputText value="#{item.hotel.price}€">
+                                    <f:convertNumber type="currency"/>
+                                </h:outputText>/>
                             </p:column>
                             <p:column>                            
                                 <p:commandButton action="/users/cancelReserve" 
-                                                 actionListener="#{reserveBackingBean.saveReserve(item)}"
+                                                 actionListener="#{reserveBackingBean.storeReserve(item)}"
                                          value="Cancelar reserva"
                                          icon="ui-icon-trash"/>
                             </p:column>
