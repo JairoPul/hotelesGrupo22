@@ -40,6 +40,16 @@ CREATE TABLE Reserve (
     CONSTRAINT FK_HotelReserve FOREIGN KEY (hotel) REFERENCES Hotel(name)
 );
 
+CREATE TABLE Chatlog (
+    id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    message varchar(500) NOT NULL
+);
+
+CREATE TABLE Chat_users (
+    id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name varchar(50) NOT NULL  
+);
+
 INSERT INTO user_groups(email, groupname) VALUES
     ('admin@admin.com', 'admin');
 

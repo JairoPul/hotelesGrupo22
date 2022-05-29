@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 var wsUri = 'ws://' + document.location.host
-+ document.location.pathname.substr(0,document.location.pathname.indexOf("/faces")) + '/websocket';console.log(wsUri);
++ document.location.pathname.substr(0,document.location.pathname.indexOf("/faces")) + '/websocket';
+console.log(wsUri);
 var websocket = new WebSocket(wsUri); //Inicializa el websocket
 var textField = document.getElementById("texto");
 var users = document.getElementById("users");
@@ -13,7 +14,7 @@ var username;
 
 function join() {
     username = textField.value;
-    websocket.send(textField.value + " joined");
+    websocket.send(username + " se unió");
     document.getElementById("unirse").style.setProperty("visibility", "hidden");
     document.getElementById("enviar").style.removeProperty("visibility");
     document.getElementById("desconectar").style.removeProperty("visibility");
@@ -24,33 +25,31 @@ function send_message() {
 }
 
 function disconnect() {
-    websocket.send(username + " left");
+    websocket.send(username + " se desconectó");
     websocket.close();
     document.getElementById("unirse").style.setProperty("visibility", "hidden");
     document.getElementById("enviar").style.setProperty("visibility","hidden");
     document.getElementById("desconectar").style.setProperty("visibility","hidden");
 }
 
-websocket.onopen = function (evt) {
-    writeToScreen("CONNECTED");
-};
+websocket.onopen = function (evt) {};
 
-websocket.onclose = function (evt) {
-    writeToScreen("DISCONNECTED");
-};
+websocket.onclose = function (evt) {};
 
 websocket.onmessage = function (evt) {
-    writeToScreen("RECEIVED: " + evt.data);
-    if (evt.data.indexOf("joined") !== -1) {
-        users.innerHTML += evt.data.substring(0, evt.data.indexOf("joined")) + "\n";
-    } else {
-        chatlog.innerHTML += evt.data + "\n";
+    const json = JSON.parse(evt.data);
+    
+    if (json.server === "no") {
+        chatlog.innerHTML += json.message;
+    } else if (json.server === "yes"){
+        if (json.isThereChatlog === "yes") {
+            chatlog.innerHTML = json.chatlog;
+        }
+        users.innerHTML = json.users;
     }
 };
 
-websocket.onerror = function (evt) {
-    writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
-};
+websocket.onerror = function (evt) {};
 
 function writeToScreen(message) {
     var pre = document.createElement("p");
