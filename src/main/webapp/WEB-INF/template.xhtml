@@ -22,15 +22,6 @@
                 <h:form>
                     <p:toolbar rendered="#{request.isUserInRole('users') or request.isUserInRole('business')}">
                         
-                        <f:facet name="left">
-                            <p:commandButton type="button" value="New" icon="ui-icon-document"/>
-                            <p:commandButton type="button" value="Open" icon="ui-icon-folder-open" />
-                            <span class="ui-separator">
-                                <span class="ui-icon ui-icon-grip-dotted-vertical" />
-                            </span>
-                            <p:commandButton type="button" title="Save" icon="ui-icon-disk" />
-                        </f:facet>
-                        
                         <f:facet name="right">
                             <p:menuButton value="#{loginView.authenticatedUser.name}">
                                 <p:menuitem value="Cerrar sesión" action="#{loginView.logout}" icon="ui-icon-power" />
@@ -69,10 +60,6 @@
                             <p:menuitem value="Mi cuenta" outcome="/business/account" icon="ui-icon-person"/>
                             <p:menuitem value="Mis hoteles" outcome="/business/hotels.xhtml" icon="ui-icon-calculator"/>
                             <p:menuitem value="Chat" outcome="/chat/chatroom.xhtml" icon="ui-icon-comment"/>
-                        </p:submenu>
-
-                        <p:submenu label ="Administrador" rendered="#{request.isUserInRole('admin')}">
-                            <p:menuitem value="Películas" outcome="/index" icon="ui-icon-calculator"/>
                         </p:submenu>
                     </p:menu>
                 </h:form>
