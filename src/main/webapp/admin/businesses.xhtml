@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/template.xhtml">
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form style="text-align: center;" id="form">
+                        <h1 ><h:outputText value="Empresas registradas en la aplicación:" 
+                                           style="font-size: 15pt;"/></h1>
+                        <p:dataTable value="#{businessClientBean.getBusinesses()}" 
+                                     var="item"
+                                     style="font-size: 15pt;">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nombre de la empresa"/>
+                                </f:facet>
+                                <h:outputText value="#{item.name}"/>
+                            </p:column>
+                            
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Email"/>
+                                </f:facet>
+                                <h:outputText value="#{item.email}"/>
+                            </p:column>
+                            
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Teléfono"/>
+                                </f:facet>
+                                <h:outputText value="#{item.tel}"/>
+                            </p:column>
+                            
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="CIF"/>
+                                </f:facet>
+                                <h:outputText value="#{item.cif}"/>
+                            </p:column>
+                                
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Domicilio social"/>
+                                </f:facet>
+                                <h:outputText value="#{item.address}"/>
+                            </p:column>
+                            
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Capital social"/>
+                                </f:facet>
+                                <h:outputText value="#{item.worth}">
+                                    <f:convertNumber type="currency"/>
+                                </h:outputText>
+                            </p:column>
+                            
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Datos del registro"/>
+                                </f:facet>
+                                <h:outputText value="#{item.data}"/>
+                            </p:column>
+                            
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="¿Está verificada?"/>
+                                </f:facet>
+                                <h:outputText value="Sí" rendered="#{item.isVerified()}"/>
+                                <h:outputText value="No" rendered="#{!item.isVerified()}"/>
+                            </p:column>
+                            
+                            <p:column>                            
+                                <p:commandButton action="#{businessClientBean.verify(item)}"
+                                         update="form"
+                                         value="Verificar empresa"
+                                         icon="ui-icon-circle-check"
+                                         rendered="#{!item.isVerified()}"/>
+                                <p:commandButton action="#{businessClientBean.unverify(item)}"
+                                         update="form"
+                                         value="Quitar verificación"
+                                         icon="ui-icon-circle-close"
+                                         rendered="#{item.isVerified()}"/>
+                            </p:column>
+                        </p:dataTable>
+                        
+                    </h:form>
+                </f:view>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

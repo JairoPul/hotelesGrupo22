@@ -82,6 +82,14 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     public String countREST() {
         return String.valueOf(super.count());
     }
+    
+    @GET 
+    @Path("businesses")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Users> findBusinesses() {
+        return em.createNamedQuery("Users.findBusinesses", Users.class)
+                .getResultList();
+    }
 
     @Override
     protected EntityManager getEntityManager() {
