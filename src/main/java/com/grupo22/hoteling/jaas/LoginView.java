@@ -36,7 +36,7 @@ public class LoginView implements Serializable{
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = SecurityUtils.stripTags(email);
     }
 
     public String getPassword() {
@@ -44,7 +44,7 @@ public class LoginView implements Serializable{
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = SecurityUtils.stripTags(password);
     }
     
     public Users getAuthenticatedUser() {

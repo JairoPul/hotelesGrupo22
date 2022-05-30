@@ -40,7 +40,7 @@ public class ClientRegisterView implements Serializable{
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = SecurityUtils.stripTags(email);
     }
 
     public String getPassword() {
@@ -48,7 +48,7 @@ public class ClientRegisterView implements Serializable{
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = SecurityUtils.stripTags(password);
     }
 
     public String getConfirmPassword() {
@@ -56,7 +56,7 @@ public class ClientRegisterView implements Serializable{
     }
 
     public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
+        this.confirmPassword = SecurityUtils.stripTags(confirmPassword);
     }
 
     public String getName() {
@@ -64,7 +64,7 @@ public class ClientRegisterView implements Serializable{
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = SecurityUtils.stripTags(name);
     }
 
     public int getTel() {

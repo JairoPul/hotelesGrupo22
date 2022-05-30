@@ -41,7 +41,7 @@ public class BusinessRegisterView implements Serializable{
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = SecurityUtils.stripTags(email);
     }
 
     public String getPassword() {
@@ -49,7 +49,7 @@ public class BusinessRegisterView implements Serializable{
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = SecurityUtils.stripTags(password);
     }
 
     public String getConfirmPassword() {
@@ -57,7 +57,7 @@ public class BusinessRegisterView implements Serializable{
     }
 
     public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
+        this.confirmPassword = SecurityUtils.stripTags(confirmPassword);
     }
 
     public String getName() {
@@ -65,7 +65,7 @@ public class BusinessRegisterView implements Serializable{
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = SecurityUtils.stripTags(name);
     }
 
     public int getTel() {
@@ -89,7 +89,7 @@ public class BusinessRegisterView implements Serializable{
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.address = SecurityUtils.stripTags(address);
     }
 
     public Double getWorth() {
@@ -105,7 +105,7 @@ public class BusinessRegisterView implements Serializable{
     }
 
     public void setData(String data) {
-        this.data = data;
+        this.data = SecurityUtils.stripTags(data);
     }
     
     

@@ -9,8 +9,7 @@ import java.io.Serializable;
 import javax.faces.flow.FlowScoped;
 import javax.inject.Named;
 import com.grupo22.hoteling.entities.Hotel;
-import com.grupo22.hoteling.entities.Reserve;
-import com.grupo22.hoteling.entities.Users;
+import com.grupo22.hoteling.jaas.SecurityUtils;
 import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,7 +21,6 @@ import javax.persistence.PersistenceContext;
 @Named
 @FlowScoped("booking")
 public class Booking implements Serializable{
-    private Users customer;
     private String city;
     private Hotel hotel;
     private Date date;
