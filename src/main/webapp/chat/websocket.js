@@ -44,7 +44,11 @@ websocket.onclose = function (evt) {};
 
 websocket.onmessage = function (evt) {
     if (unido) {
-        var mes = evt.data.replace("<","").replace(">","");
+        var mes = evt.data.replace("&", "$amp;")
+                .replace("<","&lt;")
+                .replace(">", "&gt;")
+                .replace("'", "&#039;");
+        
         const json = JSON.parse(mes);
 
         if (json.server === "no") {

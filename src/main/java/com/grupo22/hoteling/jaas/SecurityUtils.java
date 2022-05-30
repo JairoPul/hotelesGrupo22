@@ -11,6 +11,9 @@ package com.grupo22.hoteling.jaas;
  */
 public class SecurityUtils {
     public static String stripTags(String s){
-        return s.replace("<", "").replace(">","");
+        return s.replace("&", "$amp;")
+                .replace("<","&lt;")
+                .replace(">", "&gt;")
+                .replace("'", "&#039;");
     }
 }
