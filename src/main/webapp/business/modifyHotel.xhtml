@@ -10,7 +10,7 @@
         <ui:composition template="./../WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <h:form>
+                <h:form style="font-size: 15pt;">
                     <p:panel header="Datos del hotel">
                         <h:panelGrid id="grid" columns="3">
                             <h:outputLabel for="name" value="Nombre del hotel:"
@@ -34,14 +34,16 @@
                             <p:inputText id="rooms" value="#{hotelBackingBean.rooms}" 
                                          required="true"
                                          requiredMessage="Por favor, introduce el número de habitaciones."
-                                         converterMessage="El precio debe ser un número."/>
+                                         converterMessage="El número de habitaciones debe ser un número.">
+                                <f:convertNumber pattern="0"/>
+                            </p:inputText>
                             <p:message for="rooms"/>
                             
                             <h:outputLabel for="price" value="Precio por habitación (en €):"
                                            style="font-weight:bold"/>
                             <p:inputText id="price" value="#{hotelBackingBean.price}" 
                                          required="true"
-                                         requiredMessage="Por favor, introduce el precio por habitaación."
+                                         requiredMessage="Por favor, introduce el precio por habitación."
                                          converterMessage="El precio debe ser un número."> 
                                 <f:convertNumber pattern="0.00"/>
                             </p:inputText>
@@ -56,8 +58,9 @@
                         
                         <h:panelGrid id="buttons" columns="2">
                             <p:commandButton action="/business/hotels" value="Cancelar"
-                                         update="grid"
-                                         icon="ui-icon-arrowreturnthick-1-w"/>
+                                         immediate="true"
+                                         icon="ui-icon-arrowreturnthick-1-w"
+                                         style="margin-right: 5pt;"/>
                             <p:commandButton action="/business/hotels" 
                                          actionListener="#{hotelClientBean.modifyHotel}" 
                                          update="grid"

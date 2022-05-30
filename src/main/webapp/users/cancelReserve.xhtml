@@ -10,31 +10,38 @@
         <ui:composition template="./../WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <h:form>
+                <h:form style="font-size: 15pt;">
                     <p:panel header="Datos del hotel">
-                        <h:panelGrid id="grid" columns ="2">
+                        <h:panelGrid id="grid" columns ="2" style="margin-bottom: 20pt;">
 
-                            <h:outputLabel value="Nombre del hotel:" style="font-weight:bold"/>
+                            <h:outputLabel value="Nombre del hotel:" 
+                                           style="font-weight:bold; margin-right: 10pt;"/>
                             <h:outputText value="#{reserveBackingBean.hotel.name}"/>
 
-                            <h:outputLabel value="Ciudad:" style="font-weight:bold"/>
+                            <h:outputLabel value="Ciudad:"
+                                           style="font-weight:bold; margin-right: 10pt;"/>
                             <h:outputText value="#{reserveBackingBean.hotel.city}"/>
 
-                            <h:outputLabel value="Fecha:" style="font-weight:bold"/>
+                            <h:outputLabel value="Fecha:" 
+                                           style="font-weight:bold; margin-right: 10pt;"/>
                             <h:outputText value="#{reserveBackingBean.day}"/>
                             
-                            <h:outputLabel value="Precio por habitación:" style="font-weight:bold"/>
+                            <h:outputLabel value="Precio por habitación:" 
+                                           style="font-weight:bold; margin-right: 10pt;"/>
                             <h:outputText value="#{reserveBackingBean.hotel.price}"/>
                         
                         </h:panelGrid>
-                        <h:outputLabel value="¿Seguro que quieres cancelar la reserva?" style="font-weight:bold"/>
+                        <h:outputLabel value="¿Seguro que quieres cancelar la reserva?" 
+                                       style="font-weight:bold"/>
                         <h:panelGrid id="buttons" columns="2">
                             <p:commandButton action="/users/reserves" value="No"
-                                         icon="ui-icon-arrowreturnthick-1-w"/>
+                                             icon="ui-icon-arrowreturnthick-1-w"
+                                             style="margin:7pt;"/>
                             <p:commandButton action="/users/reserves" 
                                          actionListener="#{reserveClientBean.cancelReserve()}" 
                                          value="Sí"
-                                         icon="ui-icon-trash"/>
+                                         icon="ui-icon-trash"
+                                         style="margin:7pt;"/>
                         </h:panelGrid>
                     </p:panel>
                 </h:form>

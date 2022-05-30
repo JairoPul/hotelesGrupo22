@@ -11,63 +11,97 @@
         <ui:composition template="./WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <h:form>
-                    <f:event listener="#{clientRegisterView.validatePassword}" type="postValidate" />
+                <h:form style="font-size: 15pt;">
+                    <f:event listener="#{clientRegisterView.validatePassword}"
+                             type="postValidate" />
                     <p:panel header="Crear una nueva cuenta">
                         <h:panelGrid id="grid" columns="3">
                             
-                            <h:outputLabel for="name" value="Nombre y Apellidos:" style="font-weight:bold"/>
-                            <p:inputText id="name" value="#{clientRegisterView.name}" required="true"
-                            requiredMessage="Por favor, introduce tu nombre completo." maxlength="30"/>
+                            <h:outputLabel for="name" 
+                                           value="Nombre y Apellidos:" 
+                                           style="font-weight:bold; margin-right: 10pt;"/>
+                            <p:inputText id="name" 
+                                         value="#{clientRegisterView.name}" 
+                                         required="true"
+                                         requiredMessage="Por favor, introduce tu nombre completo." 
+                                         maxlength="30"/>
                             <p:message for="name"/>
                             
-                            <h:outputLabel for="email" value="E-Mail:" style="font-weight:bold"/>
-                            <p:inputText id="email" value="#{clientRegisterView.email}" required="true" requiredMessage="Por favor, introduce tu email.">
+                            <h:outputLabel for="email" value="E-Mail:" 
+                                           style="font-weight:bold; margin-right: 10pt;"/>
+                            <p:inputText id="email" 
+                                         value="#{clientRegisterView.email}" 
+                                         required="true" 
+                                         requiredMessage="Por favor, introduce tu email.">
                                 <f:validator validatorId="emailValidator" />
                             </p:inputText>
                             <p:message for="email"/>
                             
-                            <h:outputLabel for="nif" value="DNI:" style="font-weight:bold"/>
-                            <p:inputText id="nif" value="#{clientRegisterView.nif}" required="true"
-                                         requiredMessage="Por favor, introduce tu DNI." maxlength="9"
+                            <h:outputLabel for="nif" value="DNI:" 
+                                           style="font-weight:bold; margin-right: 10pt;"/>
+                            <p:inputText id="nif" 
+                                         value="#{clientRegisterView.nif}" 
+                                         required="true"
+                                         requiredMessage="Por favor, introduce tu DNI." 
+                                         maxlength="9"
                                          validatorMessage="El DNI debe ser válido">
                                 <f:validateRegex pattern="\d\d\d\d\d\d\d\d[a-zA-Z]" />
                             </p:inputText>
                             <p:message for="nif"/>
                             
-                            <h:outputLabel for="bdate" value="Fecha de nacimiento:" style="font-weight:bold"/>
-                            <p:datePicker id="bdate" value="#{clientRegisterView.bdate}"
+                            <h:outputLabel for="bdate" 
+                                           value="Fecha de nacimiento:" 
+                                           style="font-weight:bold; margin-right: 10pt;"/>
+                            <p:datePicker id="bdate" 
+                                          value="#{clientRegisterView.bdate}"
                                           pattern="dd/MM/yyyy" locale="es" 
-                                          yearNavigator="true" yearRange="1920:2022" 
-                                          required="true" requiredMessage="Por favor, introduce tu fecha de nacimiento.">
+                                          yearNavigator="true"
+                                          yearRange="1920:2022" 
+                                          required="true" 
+                                          requiredMessage="Por favor, introduce tu fecha de nacimiento." 
+                                          validatorMessage="Por favor, introduce una fecha válida">
                                 <f:validator validatorId="birthValidator" />
                             </p:datePicker>
                             <p:message for="bdate"/>
                             
-                            <h:outputLabel for="tel" value="Teléfono:" style="font-weight:bold"/>
-                            <p:inputText id="tel" value="#{clientRegisterView.tel}" required="true"
-                            requiredMessage="Por favor, introduce tu teléfono." maxlength="15"
-                            converterMessage="Introduce un número de teléfono válido."/>
+                            <h:outputLabel for="tel" value="Teléfono:" 
+                                           style="font-weight:bold; margin-right: 10pt;"/>
+                            <p:inputText id="tel" 
+                                         value="#{clientRegisterView.tel}"
+                                         required="true"
+                                         requiredMessage="Por favor, introduce tu teléfono."
+                                         maxlength="15"
+                                         converterMessage="Introduce un número de teléfono válido."/>
                             <p:message for="tel"/>
                             
-                            <h:outputLabel for="password" value="Contraseña:" style="font-weight:bold"/>
-                            <p:password id="password" value="#{clientRegisterView.password}" feedback="true"
-                            required="true" requiredMessage="Por favor, introduce tu contraseña."
-                            validatorMessage="La contraseña debe contener al menos un carácter en minúsculas,
-                            un caracter en mayúscula, un número y su longitud debe estar entre 6 y 20
-                            caracteres.">
+                            <h:outputLabel for="password" value="Contraseña:"
+                                           style="font-weight:bold; margin-right: 10pt;"/>
+                            <p:password id="password"
+                                        value="#{clientRegisterView.password}"
+                                        feedback="true"
+                                        required="true" 
+                                        requiredMessage="Por favor, introduce tu contraseña."
+                                        validatorMessage="La contraseña debe contener al menos un carácter en minúsculas,
+                                        un caracter en mayúscula, un número y su longitud debe estar entre 6 y 20
+                                        caracteres.">
                                 <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})" />
                             </p:password>
                             <p:message for="password"/>
                             
-                            <h:outputLabel for="confirmpassword" value="Confirmar contraseña:" style="font-weight:bold"/>
+                            <h:outputLabel for="confirmpassword"
+                                           value="Confirmar contraseña:" 
+                                           style="font-weight:bold; margin-right: 10pt;"/>
                             <p:password id="confirmpassword" feedback="true"
-                            value="#{clientRegisterView.confirmPassword}" required="true"
-                            requiredMessage="Por favor, confirma tu contraseña."/>
+                                        value="#{clientRegisterView.confirmPassword}"
+                                        required="true"
+                                        requiredMessage="Por favor, confirma tu contraseña."/>
                             <p:message for="confirmpassword"/>
                             
                         </h:panelGrid>
-                        <p:commandButton action="#{clientRegisterView.register}" update="grid" value="Regístrate!" icon="uiicon-pencil"/>
+                        <p:commandButton action="#{clientRegisterView.register}"
+                                         update="grid" value="Regístrate!" 
+                                         icon="ui-icon-pencil" 
+                                         style="margin: 7pt;"/>
                     </p:panel>
                 </h:form>
             </ui:define>

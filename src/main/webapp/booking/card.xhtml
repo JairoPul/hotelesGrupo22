@@ -11,27 +11,41 @@
         <ui:composition template="./../WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <h2><h:outputText value="Introduzca informacion del pago"/></h2>
-                <h:form prependId="false">
+                <h:form prependId="false" style="font-size: 15pt;">
+                    <p:panel header="Introduzca información del pago">
                     <h:panelGrid columns="3" id="grid">
+                        
                         <p:outputLabel for="precio" value="Precio"/>
                         <p:outputLabel id="precio" value="#{booking.hotel.price}"> 
                             <f:convertNumber type="currency"/>
                         </p:outputLabel>
                         <p:message for="precio" style="color:blue"/>
-                        <p:outputLabel for="tarjeta" value="Tarjeta de credito"/>
-                        <p:inputMask id="tarjeta" value="#{booking.card}" mask="9999-9999-9999-9999" required="true">
-                            <f:validator validatorId="cardValidator" />
+                        
+                        <p:outputLabel for="tarjeta" value="Tarjeta de crédito"/>
+                        <p:inputMask id="tarjeta" value="#{booking.card}" 
+                                     mask="9999-9999-9999-9999" required="true"
+                                     requiredMessage="Por favor, introduce una tarjeta de crédito">
+                            <f:validator validatorId="cardValidator"/>
                         </p:inputMask>
                         <p:message for="tarjeta"/>
+                        
                         <p:outputLabel for="fecha" value="Fecha de expiracion (mes/año)"/>
-                        <p:datePicker id="fecha" view="month" value="#{booking.fecha}" pattern="MM/yyyy" locale="es"
-                        yearNavigator="true" yearRange="2022:2030" />
+                        <p:datePicker id="fecha" view="month"
+                                      value="#{booking.fecha}" pattern="MM/yyyy" 
+                                      locale="es"                                      
+                                      yearNavigator="true" yearRange="2022:2030"
+                                      required="true" 
+                                      requiredMessage="Por favor, introduce la fecha de caducidad"/>
                         <p:message for="fecha"/>
+                        
                     </h:panelGrid>
-                    <p/><p:commandButton id="next" value="Confirmar" action="#{bookingClientBean.newReserve(booking.date,booking.hotel)}" update="grid"/>
-                    <p:commandButton id="back" value="Atrás" action="dateSelector" icon="ui-icon-arrowrefresh-1-w"
-                    immediate="true"/>
+                    <p/><p:commandButton id="next" value="Confirmar"
+                                         action="#{bookingClientBean.newReserve(booking.date,booking.hotel)}"
+                                         update="grid" style="font-size: 13pt; margin: 5pt;"/>
+                    <p:commandButton id="back" value="Atrás" action="dateSelector"
+                                     icon="ui-icon-arrowrefresh-1-w"
+                                     immediate="true" style="font-size: 13pt; margin: 5pt;"/>
+                    </p:panel>
                 </h:form>
             </ui:define>
 

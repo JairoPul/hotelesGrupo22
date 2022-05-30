@@ -11,34 +11,43 @@
         <ui:composition template="./../WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <h:form>
+                <h:form style="font-size: 15pt;">
                     <p:panel header="Datos de la cuenta">
-                        <h:panelGrid id="grid" columns ="2">
+                        <h:panelGrid id="grid" columns ="2" style="margin-bottom: 30pt;">
 
-                            <h:outputLabel value="Nombre:" style="font-weight:bold"/>
+                            <h:outputLabel value="Nombre:" 
+                                           style="font-weight:bold; margin-right: 10pt;"/>
                             <h:outputText value="#{loginView.authenticatedUser.name}"/>
 
-                            <h:outputLabel value="Email:" style="font-weight:bold"/>
+                            <h:outputLabel value="Email:"
+                                           style="font-weight:bold; margin-right: 10pt;"/>
                             <h:outputText value="#{loginView.authenticatedUser.email}"/>
 
-                            <h:outputLabel value="DNI:" style="font-weight:bold"/>
+                            <h:outputLabel value="DNI:"
+                                           style="font-weight:bold; margin-right: 10pt;"/>
                             <h:outputText value="#{loginView.authenticatedUser.nif}"/>
                             
-                            <h:outputLabel value="Fecha de nacimiento:" style="font-weight:bold"/>
+                            <h:outputLabel value="Fecha de nacimiento:"
+                                           style="font-weight:bold; margin-right: 10pt;"/>
                             <h:outputText value="#{loginView.authenticatedUser.bdate}">
                                 <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+2"/>        
                             </h:outputText>
                             
-                            <h:outputLabel value="Teléfono:" style="font-weight:bold"/>
+                            <h:outputLabel value="Teléfono:" 
+                                           style="font-weight:bold; margin-right: 10pt;"/>
                             <h:outputText value="#{loginView.authenticatedUser.tel}"/>
                         
                         </h:panelGrid>
-                        <h:outputLabel value="¿Seguro que quieres eliminar la cuenta?" style="font-weight:bold"/>
+                        <h:outputLabel value="¿Seguro que quieres eliminar la cuenta?" 
+                                       style="font-weight:bold;"/>
                         <h:panelGrid id="buttons" columns="2">
                             <p:commandButton action="/users/account" value="No"
-                                         icon="ui-icon-arrowreturnthick-1-w"/>
-                            <p:commandButton action="#{loginView.deleteAccount}" value="Sí"
-                                         icon="ui-icon-trash"/>
+                                             icon="ui-icon-arrowreturnthick-1-w"
+                                             style="margin: 7pt;"/>
+                            <p:commandButton action="#{loginView.deleteAccount}" 
+                                             value="Sí"
+                                             icon="ui-icon-trash"
+                                             style="margin: 7pt;"/>
                         </h:panelGrid>
                     </p:panel>
                 </h:form>

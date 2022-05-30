@@ -17,14 +17,18 @@
     
     <h:body>
         <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true" >
-                <h2><h:outputText value="Hoteling"/></h2>
+            <p:layoutUnit position="north" size="100" resizable="true" 
+                          closable="true" collapsible="true" >
+                <h2><h:outputText value="Hoteling" 
+                                  style="margin: 30pt; font-size: 30pt; color: #eaa217;text-shadow: 2px 2px #2089e1;"/></h2>
                 <h:form>
                     <p:toolbar rendered="#{request.isUserInRole('users') or request.isUserInRole('business')}">
                         
                         <f:facet name="right">
                             <p:menuButton value="#{loginView.authenticatedUser.name}">
-                                <p:menuitem value="Cerrar sesión" action="#{loginView.logout}" icon="ui-icon-power" />
+                                <p:menuitem value="Cerrar sesión" 
+                                            action="#{loginView.logout}"
+                                            icon="ui-icon-power" />
                             </p:menuButton>
                         </f:facet>
                         
@@ -32,10 +36,12 @@
                 </h:form>
             </p:layoutUnit>
 
-            <p:layoutUnit position="west" size="200" header="Menú" collapsible="true">
+            <p:layoutUnit position="west" size="200" header="Menú" 
+                          collapsible="true" style="font-size: 12pt;">
                 <h:form>
                     <p:menu>
-                        <p:menuitem value="Inicio" outcome="/index.xhtml" icon="ui-icon-home" />
+                        <p:menuitem value="Inicio" outcome="/index.xhtml"
+                                    icon="ui-icon-home" />
 
                         <p:menuitem value="Iniciar Sesión" outcome="/login.xhtml"
                                     rendered="#{request.isUserInRole('users')==false and request.isUserInRole('business')==false}" 
@@ -49,17 +55,33 @@
                                     rendered="#{request.isUserInRole('users')==false and request.isUserInRole('business')==false}" 
                                     icon="ui-icon-pencil"/>
 
-                        <p:submenu label ="Usuario" rendered="#{request.isUserInRole('users')}">
-                            <p:menuitem value="Mi cuenta" outcome="/users/account" icon="ui-icon-person"/>
-                            <p:menuitem value="Mis reservas" outcome="/users/reserves" icon="ui-icon-suitcase"/>
-                            <p:menuitem value="Booking" action="booking" icon="ui-icon-bookmark"/>
-                            <p:menuitem value="Chat" outcome="/chat/chatroom.xhtml" icon="ui-icon-comment" />
+                        <p:submenu label ="Usuario"
+                                   rendered="#{request.isUserInRole('users')}">
+                            <p:menuitem value="Mi cuenta" 
+                                        outcome="/users/account"
+                                        icon="ui-icon-person"/>
+                            <p:menuitem value="Mis reservas"
+                                        outcome="/users/reserves"
+                                        icon="ui-icon-suitcase"/>
+                            <p:menuitem value="Booking" 
+                                        action="booking" 
+                                        icon="ui-icon-bookmark"/>
+                            <p:menuitem value="Chat" 
+                                        outcome="/chat/chatroom.xhtml"
+                                        icon="ui-icon-comment" />
                         </p:submenu>
                         
-                        <p:submenu label ="Empresa" rendered="#{request.isUserInRole('business')}">
-                            <p:menuitem value="Mi cuenta" outcome="/business/account" icon="ui-icon-person"/>
-                            <p:menuitem value="Mis hoteles" outcome="/business/hotels.xhtml" icon="ui-icon-calculator"/>
-                            <p:menuitem value="Chat" outcome="/chat/chatroom.xhtml" icon="ui-icon-comment"/>
+                        <p:submenu label ="Empresa" 
+                                   rendered="#{request.isUserInRole('business')}">
+                            <p:menuitem value="Mi cuenta" 
+                                        outcome="/business/account" 
+                                        icon="ui-icon-person"/>
+                            <p:menuitem value="Mis hoteles" 
+                                        outcome="/business/hotels.xhtml" 
+                                        icon="ui-icon-calculator"/>
+                            <p:menuitem value="Chat"
+                                        outcome="/chat/chatroom.xhtml" 
+                                        icon="ui-icon-comment"/>
                         </p:submenu>
                     </p:menu>
                 </h:form>

@@ -10,23 +10,34 @@
 
             <ui:define name="content">
                 <form action="">
-                    <table>
+                    <table style="margin: auto;">
                         <tr>
                             <td>
-                                <h3><p:outputLabel value="Mensajes" /></h3>
-                                <p:inputTextarea readonly="true" id="chatlog" rows="10" cols="50" autoResize="false" />
+                                <h3 style="font-size: 15pt;"><p:outputLabel value="Mensajes" /></h3>
+                                <p:inputTextarea readonly="true" id="chatlog"
+                                                 rows="20" cols="100" 
+                                                 autoResize="false" />
                             </td>
                             <td>
-                                <h3><p:outputLabel value="Usuarios" /></h3>
-                                <p:inputTextarea readonly="true" id="users" rows="10" cols="20" autoResize="false" />
+                                <h3 style="font-size: 15pt;"><p:outputLabel value="Usuarios" /></h3>
+                                <p:inputTextarea readonly="true" id="users" 
+                                                 rows="20" cols="25" 
+                                                 autoResize="false" />
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
                                 <p:inputText id="texto" value="Usuario"/>
-                                <p:commandButton id="unirse" onclick="join();" value="Unirse"/>
-                                <p:commandButton id="enviar" onclick="send_message();" value="Enviar" style="visibility:hidden"/><p/>
-                                <p:commandButton id="desconectar" onclick="disconnect();" value="Desconectarse" style="visibility: hidden"/>
+                                <p:commandButton id="unirse" onclick="join();"
+                                                 value="Unirse"/>
+                                <p:commandButton id="enviar" 
+                                                 onclick="send_message();" 
+                                                 value="Enviar"
+                                                 style="visibility:hidden"/><p/>
+                                <p:commandButton id="desconectar" 
+                                                 onclick="disconnect();" 
+                                                 value="Desconectarse" 
+                                                 style="visibility: hidden"/>
                             </td>
                         </tr>
                     </table>

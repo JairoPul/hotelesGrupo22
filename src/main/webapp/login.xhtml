@@ -10,22 +10,30 @@
         <ui:composition template="./WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <h:form>
+                <h:form style="font-size: 15pt;">
                     <p:messages id="messages" closable="true"/>
                     <p:panel header="Acceso de usuario">
                         <h:panelGrid id="grid" columns="2">
                             
-                            <h:outputLabel for="email" value="E-Mail:" style="font-weight:bold"/>
-                            <p:inputText id="email" value="#{loginView.email}" required="true"
+                            <h:outputLabel for="email" value="E-Mail:" 
+                                           style="font-weight:bold; margin-right: 10pt;"/>
+                            <p:inputText id="email" value="#{loginView.email}" 
+                                         required="true"
                                          requiredMessage="Por favor, introduce tu email."/>
                             
-                            <h:outputLabel for="password" value="Contraseña:" style="font-weight:bold"/>
-                            <p:password id="password" value="#{loginView.password}" required="true"
+                            <h:outputLabel for="password" value="Contraseña:" 
+                                           style="font-weight:bold; margin-right: 10pt;"/>
+                            <p:password id="password" 
+                                        value="#{loginView.password}" 
+                                        required="true"
                                         requiredMessage="Por favor, introduce tu contraseña."/>
                             
                         </h:panelGrid>
-                        <p:commandButton action="#{loginView.login}" value="Login"
-                                         icon="ui-icon-check" update="messages"/>
+                        <p:commandButton action="#{loginView.login}" 
+                                         value="Login"
+                                         icon="ui-icon-check" 
+                                         update="messages"
+                                         style="margin: 7pt;"/>
                     </p:panel>
                 </h:form>
             </ui:define>

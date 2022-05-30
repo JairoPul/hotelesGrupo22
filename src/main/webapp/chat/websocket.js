@@ -26,6 +26,7 @@ function send_message() {
 
 function disconnect() {
     websocket.send(username + " se desconectó");
+    chatlog.innerHTML += "Te has desconectado"
     websocket.close();
     document.getElementById("unirse").style.setProperty("visibility", "hidden");
     document.getElementById("enviar").style.setProperty("visibility","hidden");

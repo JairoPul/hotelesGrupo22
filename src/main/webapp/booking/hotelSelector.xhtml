@@ -11,14 +11,23 @@
         <ui:composition template="./../WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <h2>Hoteles en <font color="red">#{booking.city}</font></h2>
+                <div style="margin: auto; text-align: center;">
+                <h2 style="font-size: 20pt;">Hoteles en <font color="red">#{booking.city}</font></h2>
                 <h:form>
-                    <h:selectOneRadio value="#{booking.price}" layout="pageDirection" required="true">
-                        <f:selectItems value="#{bookingClientBean.findHotelsInCity(booking.city)}" var="s" itemValue="#{booking.storeHotel(s)}" itemLabel="#{s.name}"/>
+                    <h:selectOneRadio value="#{booking.price}" layout="pageDirection" 
+                                      required="true" requiredMessage="Por favor, selecciona un hotel" 
+                                      style="font-size: 15pt; margin: auto; margin-bottom: 10pt; text-align: center;">
+                        <f:selectItems value="#{bookingClientBean.findHotelsInCity(booking.city)}" 
+                                       var="s" itemValue="#{booking.storeHotel(s)}" 
+                                       itemLabel="#{s.name}"/>
                     </h:selectOneRadio>
-                    <p:commandButton value="Reservar hotel" action="dateSelector" />
-                    <p:commandButton id="back" value="Atrás" action="booking" immediate="true" icon="ui-iconarrowrefresh-1-w"/>
+                    <p:commandButton value="Reservar hotel" action="dateSelector" 
+                                     style="font-size: 13pt; margin: 5pt;"/>
+                    <p:commandButton id="back" value="Atrás" action="booking" 
+                                     immediate="true" icon=" ui-icon-arrowreturnthick-1-w" 
+                                     style="font-size: 13pt; margin: 5pt;"/>
                 </h:form>
+                </div>
             </ui:define>
 
         </ui:composition>

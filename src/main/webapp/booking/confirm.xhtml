@@ -11,13 +11,18 @@
         <ui:composition template="./../WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <h2><h:outputText value="Reserva confirmada!!!"/></h2>
-                <h:form>
+                <h2><h:outputText value="Reserva confirmada. ¡Muchas gracias!"/></h2>
+                <h:form style="font-size: 15pt;">
                     <p:panelGrid id="print" columns ="1">
-                        <p:panelGrid id="info" columns="3">
-                            <h:outputText value="Hotel: #{booking.hotel.name}"/>
-                            <h:outputText value="Ciudad: #{booking.city}"/>
-                            <h:outputText value="Fecha: #{booking.date}">
+                        <p:panelGrid id="info" columns="2">
+                            <h:outputText value="Hotel: "/>
+                            <h:outputText value="#{booking.hotel.name}"/>
+                            
+                            <h:outputText value="Ciudad: "/>
+                            <h:outputText value="#{booking.city}"/>
+                            
+                            <h:outputText value="Fecha: "/>
+                            <h:outputText value="#{booking.date}">
                                 <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+2"/>
                             </h:outputText>
                         </p:panelGrid>
@@ -26,15 +31,18 @@
                             <h:outputText value="#{booking.price}">
                                 <f:convertNumber type="currency"/>
                             </h:outputText>
-                            <h:outputText value="Tarjeta de credito:"/>
+                            
+                            <h:outputText value="Tarjeta de crédito:"/>
                             <h:outputText value="#{booking.card}"/>
-                            <h:outputText value="Fecha de expiracion:"/>
+                            
+                            <h:outputText value="Fecha de expiración:"/>
                                 <h:outputText value="#{booking.fecha}">
                             <f:convertDateTime pattern="MM/yyyy" timeZone="GMT+2"/>
                             </h:outputText>
                         </p:panelGrid>
                     </p:panelGrid>
-                    <p:commandButton id="home" value="Inicio" action="goHome" icon="ui-icon-home"/>
+                    <p:commandButton id="home" value="Inicio" action="goHome"
+                                     icon="ui-icon-home" style="margin: 7pt;"/>
                 </h:form>
             </ui:define>
 

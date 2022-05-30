@@ -8,11 +8,11 @@
         <ui:composition template="./../WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <h3>Hola #{loginView.authenticatedUser.name}</h3>
-                <p>Tu id de usuario es #{loginView.authenticatedUser.email}</p>
-                <p>Tienes el rol users?: #{request.isUserInRole('users')}</p>
-                <p>Tienes el rol admin?: #{request.isUserInRole('admin')}</p>
-                <p>Esta es una página privada, requiere acceso mediante password.</p>
+                <div style="margin: auto; text-align: center;">
+                <h3 style="font-size: 30pt;">Hola, #{loginView.authenticatedUser.name}</h3>
+                <p style="font-size: 15pt;">Tu id de usuario es #{loginView.authenticatedUser.email}</p>
+                <p style="font-size: 15pt;">¡Bienvenido!</p>
+                </div>
             </ui:define>
 
         </ui:composition>

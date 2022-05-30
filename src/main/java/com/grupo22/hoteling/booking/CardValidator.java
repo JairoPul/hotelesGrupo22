@@ -34,8 +34,8 @@ public class CardValidator implements Validator{
         WebTarget target = client.target("http://valdavia.infor.uva.es:8080/hoteling/webresources/tarjetas");
         try{
             String response = target.path("{tarjeta}").resolveTemplate("tarjeta",tarjeta).request(MediaType.APPLICATION_JSON).get(String.class);
-            JSONObject json = new JSONObject(response);
-            if (json.get("autorizada")=="no"){
+            JSONObject json = new JSONObject(response); 
+            if (json.getString("autorizada").equals("no")){
                 throw new Exception();
             }
         } catch (Exception e) {

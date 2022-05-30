@@ -11,15 +11,21 @@
         <ui:composition template="./../WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <h2>Elige la ciudad</h2>
+                <div style="margin: auto; text-align: center;">
+                <h2 style="font-size: 20pt;">Elige la ciudad</h2>
                 
                 <h:form>
-                    <p:selectOneMenu id="longItemLabel" value="#{booking.city}" required="true">
-                        <f:selectItems value="#{bookingClientBean.findCities()}" var="m" itemValue="#{m}" itemLabel="#{m}"/>
+                    <p:selectOneMenu id="longItemLabel" value="#{booking.city}"
+                                     required="true" 
+                                     style="font-size: 15pt; margin: 5pt;">
+                        <f:selectItems value="#{bookingClientBean.findCities()}" 
+                                       var="m" itemValue="#{m}" itemLabel="#{m}"/>
                     </p:selectOneMenu>
-                
-                    <p:commandButton id="shows" value="Ver hoteles" action="hotelSelector"/>
+                    <p:commandButton id="shows" value="Ver hoteles" 
+                                     action="hotelSelector" 
+                                     style="font-size: 13pt; margin: 5pt;"/>
                 </h:form>
+                </div>
             </ui:define>
 
         </ui:composition>

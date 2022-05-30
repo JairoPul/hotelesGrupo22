@@ -11,39 +11,46 @@
         <ui:composition template="./../WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <h2><font color="red">#{booking.hotel.name}</font></h2>
-                <h:form>
+                <h2 style="margin-left: 10pt; font-size: 20pt;"><font color="red">#{booking.hotel.name}</font></h2>
+                <h:form style="font-size: 15pt;">
                     <p:panel header="Datos del hotel:">
                         <h:panelGrid id="grid" columns ="3">
 
                             <h:outputLabel for="city"
                                            value="Ciudad:" 
-                                           style="font-weight:bold"/>
+                                           style="font-weight:bold; margin-right: 10pt;"/>
                             <h:outputText id="city" value="#{booking.city}"/>
                             <p:message for="city"/>
 
                             <h:outputLabel for="price" 
                                            value="Precio habitación:"
-                                           style="font-weight:bold"/>
+                                           style="font-weight:bold; margin-right: 10pt;"/>
                             <h:outputText id="price" value="#{booking.hotel.price}">
                                 <f:convertNumber type="currency"/>
                             </h:outputText>
                             <p:message for="price"/>
 
                             <h:outputLabel for="date" 
-                                           value="Fecha a reservar:" />
+                                           value="Fecha a reservar:"
+                                           style="font-weight:bold; margin-right: 10pt;"/>
                             <p:datePicker id="date" value="#{booking.date}" 
-                                          pattern="dd/MM/yyyy" locale="es" 
+                                          pattern="dd/MM/yyyy"
                                           yearNavigator="true" mindate="#{booking.currentDate}" 
                                           required="true" 
-                                          requiredMessage="Por favor, introduce una fecha." />
+                                          requiredMessage="Por favor, introduce una fecha."
+                                          validatorMessage="Por favor, introduce una fecha válida."/>
                             <p:message for="date"/>
                         
                         </h:panelGrid>
                         
                         <h:panelGrid id="buttons" columns="2">
-                            <p:commandButton id="next" value="Pagar la reserva" action="card" update="grid"/>
-                            <p:commandButton id="back" value="Atrás" action="hotelSelector" icon="ui-iconarrowrefresh-1-w"/>
+                            <p:commandButton id="next" value="Pagar la reserva" 
+                                             action="card" update="grid" 
+                                             style="font-size: 13pt; margin: 5pt;"/>
+                            <p:commandButton id="back" value="Atrás" 
+                                             immediate="true" action="hotelSelector"
+                                             icon="ui-icon-arrowreturnthick-1-w"
+                                             style="font-size: 13pt; margin: 5pt;"/>
                         </h:panelGrid>
                     </p:panel>
                 </h:form>

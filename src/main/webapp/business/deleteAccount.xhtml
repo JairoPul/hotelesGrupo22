@@ -11,34 +11,41 @@
         <ui:composition template="./../WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <h:form>
+                <h:form style="font-size: 15pt;">
                     <p:panel header="Datos de la cuenta">
-                        <h:panelGrid id="grid" columns ="2">
+                        <h:panelGrid id="grid" columns ="2" style="margin-bottom: 15pt;">
 
-                            <h:outputLabel value="Nombre:" style="font-weight:bold"/>
+                            <h:outputLabel value="Nombre:"
+                                           style="font-weight:bold; margin-right: 5pt;"/>
                             <h:outputText value="#{loginView.authenticatedUser.name}"/>
 
-                            <h:outputLabel value="Email:" style="font-weight:bold"/>
+                            <h:outputLabel value="Email:" 
+                                           style="font-weight:bold; margin-right: 5pt;"/>
                             <h:outputText value="#{loginView.authenticatedUser.email}"/>
 
-                            <h:outputLabel value="CIF:" style="font-weight:bold"/>
+                            <h:outputLabel value="CIF:"
+                                           style="font-weight:bold; margin-right: 5pt;"/>
                             <h:outputText value="#{loginView.authenticatedUser.cif}"/>
                             
-                            <h:outputLabel value="Domicilio social:" style="font-weight:bold"/>
+                            <h:outputLabel value="Domicilio social:" 
+                                           style="font-weight:bold; margin-right: 5pt;"/>
                             <h:outputText value="#{loginView.authenticatedUser.address}"/>
                             
-                            <h:outputLabel value="Teléfono:" style="font-weight:bold"/>
+                            <h:outputLabel value="Teléfono:" 
+                                           style="font-weight:bold; margin-right: 5pt;"/>
                             <h:outputText value="#{loginView.authenticatedUser.tel}"/>
                             
-                            <h:outputLabel value="Capital social:" style="font-weight:bold"/>
+                            <h:outputLabel value="Capital social:" 
+                                           style="font-weight:bold; margin-right: 5pt;"/>
                             <h:outputText value="#{loginView.authenticatedUser.worth} €"/>
                             
-                            <h:outputLabel value="Datos del registro mercantil:" style="font-weight:bold"/>
+                            <h:outputLabel value="Datos del registro mercantil:"
+                                           style="font-weight:bold; margin-right: 5pt;"/>
                             <h:outputText value="#{loginView.authenticatedUser.data}"/>
                         
                         </h:panelGrid>
-                        <h:outputLabel value="¿Seguro que quieres eliminar la cuenta?" style="font-weight:bold"/>
-                        <h:panelGrid id="buttons" columns="2">
+                        <h:outputLabel value="¿Seguro que quieres eliminar la cuenta?" style="font-weight: bold;"/>
+                        <h:panelGrid id="buttons" columns="2" style="margin-top: 10pt">
                             <p:commandButton action="/business/account" value="No"
                                          icon="ui-icon-arrowreturnthick-1-w"/>
                             <p:commandButton action="#{loginView.deleteAccount}" value="Sí"

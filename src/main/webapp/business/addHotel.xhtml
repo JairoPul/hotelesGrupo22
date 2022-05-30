@@ -11,13 +11,18 @@
         <ui:composition template="./../WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <f:event type="preRenderView" listener="#{hotelBackingBean.flush}"/>
-                <h:form>
-                    <p:panel header="Crear una nueva cuenta">
+                
+                <f:event type="preRenderView" 
+                         listener="#{hotelBackingBean.flush}"/>
+                
+                <h:form style="font-size: 15pt;">
+                    <p:panel header="Añadir un hotel">
+                        
                         <h:panelGrid id="grid" columns="3">
                             <h:outputLabel for="name" value="Nombre del hotel:"
                                            style="font-weight:bold"/>
-                            <p:inputText id="name" value="#{hotelBackingBean.name}" 
+                            <p:inputText id="name"
+                                         value="#{hotelBackingBean.name}" 
                                          required="true"
                                          requiredMessage="Por favor, introduce el nombre del hotel." 
                                          maxlength="100"/>
@@ -25,38 +30,54 @@
 			 
                             <h:outputLabel for="city" value="Ciudad:"
                                            style="font-weight:bold"/>
-                            <p:inputText id="city" value="#{hotelBackingBean.city}" 
+                            <p:inputText id="city" 
+                                         value="#{hotelBackingBean.city}" 
                                          required="true"
                                          requiredMessage="Por favor, introduce el nombre de la ciudad." 
                                          maxlength="50"/>
                             <p:message for="city"/>
                             
-                            <h:outputLabel for="rooms" value="Número de habitaciones:"
+                            <h:outputLabel for="rooms"
+                                           value="Número de habitaciones:"
                                            style="font-weight:bold"/>
-                            <p:inputText id="rooms" value="#{hotelBackingBean.rooms}" 
+                            <p:inputText id="rooms" 
+                                         value="#{hotelBackingBean.rooms}" 
                                          required="true"
                                          requiredMessage="Por favor, introduce el número de habitaciones."
-                                         converterMessage="El precio debe ser un número."/>
+                                         converterMessage="El número de habitaciones debe ser un número.">
+                                <f:convertNumber pattern="0"/>
+                            </p:inputText>
                             <p:message for="rooms"/>
                             
-                            <h:outputLabel for="price" value="Precio por habitación (en €):"
+                            <h:outputLabel for="price"
+                                           value="Precio por habitación (en €):"
                                            style="font-weight:bold"/>
-                            <p:inputText id="price" value="#{hotelBackingBean.price}" 
+                            <p:inputText id="price" 
+                                         value="#{hotelBackingBean.price}" 
                                          required="true"
-                                         requiredMessage="Por favor, introduce el precio por habitaación."
+                                         requiredMessage="Por favor, introduce el precio por habitación."
                                          converterMessage="El precio debe ser un número."> 
                                 <f:convertNumber pattern="0.00"/>
                             </p:inputText>
                             <p:message for="price"/>
                             
-                            <h:outputLabel for="services" value="Servicios ofrecidos:"
+                            <h:outputLabel for="services" 
+                                           value="Servicios ofrecidos:"
                                            style="font-weight:bold"/>
-                            <p:inputText id="services" value="#{hotelBackingBean.services}" 
+                            <p:inputText id="services"
+                                         value="#{hotelBackingBean.services}" 
                                          maxlength="100"/>
                             <p:message for="services"/>
                         </h:panelGrid>
-                        <p:commandButton action="/business/hotels" update="grid" value="Atrás" icon="ui-icon-arrowreturnthick-1-w"/>
-                        <p:commandButton action="/business/hotels" actionListener="#{hotelClientBean.addHotel}" update="grid" value="Añadir hotel" icon="uiicon-plusthick"/>
+                        <p:commandButton action="/business/hotels" 
+                                         immediate="true" value="Atrás" 
+                                         icon="ui-icon-arrowreturnthick-1-w" 
+                                         style="margin-right: 5pt;"/>
+                        <p:commandButton action="/business/hotels" 
+                                         actionListener="#{hotelClientBean.addHotel}"
+                                         update="grid" value="Añadir hotel" 
+                                         icon="ui-icon-plusthick"/>
+                        
                     </p:panel>
                 </h:form>
             </ui:define>

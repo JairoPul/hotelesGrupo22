@@ -12,9 +12,11 @@
 
             <ui:define name="content">
                 <f:view>
-                    <h:form>
-                        <h1><h:outputText value="Tus reservas:"/></h1>
-                        <p:dataTable value="#{reserveClientBean.getReservesFromCustomer()}" var="item">
+                    <h:form style="text-align: center;">
+                        <h1 ><h:outputText value="Tus reservas:" style="font-size: 15pt;"/></h1>
+                        <p:dataTable value="#{reserveClientBean.getReservesFromCustomer()}" 
+                                     var="item"
+                                     style="font-size: 15pt;">
                             <p:column>
                                 <f:facet name="header">
                                     <h:outputText value="Nombre del hotel"/>
@@ -41,7 +43,7 @@
                                 </f:facet>
                                 <h:outputText value="#{item.hotel.price}€">
                                     <f:convertNumber type="currency"/>
-                                </h:outputText>/>
+                                </h:outputText>
                             </p:column>
                             <p:column>                            
                                 <p:commandButton action="/users/cancelReserve" 
