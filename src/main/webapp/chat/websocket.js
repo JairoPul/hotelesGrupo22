@@ -11,22 +11,27 @@ var textField = document.getElementById("texto");
 var users = document.getElementById("users");
 var chatlog = document.getElementById("chatlog");
 var username;
+var unido = false;
 
 function join() {
+    unido = true;
     username = textField.value;
     websocket.send(username + " se unió");
     document.getElementById("unirse").style.setProperty("visibility", "hidden");
+    document.getElementById("unirse").blur();
     document.getElementById("enviar").style.removeProperty("visibility");
     document.getElementById("desconectar").style.removeProperty("visibility");
 }
 
 function send_message() {
-    websocket.send(username + ": " + textField.value);
+    if(unido){
+        websocket.send(username + ": " + textField.value);
+    }
 }
 
 function disconnect() {
     websocket.send(username + " se desconectó");
-    chatlog.innerHTML += "Te has desconectado"
+    chatlog.innerHTML += "Te has desconectado";
     websocket.close();
     document.getElementById("unirse").style.setProperty("visibility", "hidden");
     document.getElementById("enviar").style.setProperty("visibility","hidden");
@@ -40,7 +45,7 @@ websocket.onclose = function (evt) {};
 websocket.onmessage = function (evt) {
     const json = JSON.parse(evt.data);
     
-    if (json.server === "no") {
+    if (json.server === "no" && unido) {
         chatlog.innerHTML += json.message;
     } else if (json.server === "yes"){
         if (json.isThereChatlog === "yes") {
@@ -48,6 +53,7 @@ websocket.onmessage = function (evt) {
         }
         users.innerHTML = json.users;
     }
+    
 };
 
 websocket.onerror = function (evt) {};
