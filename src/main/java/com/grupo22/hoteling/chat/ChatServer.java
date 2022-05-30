@@ -71,7 +71,8 @@ public class ChatServer {
             for ( String u : users ){
                 messageFromServer += u + "\\n";
             }
-            messageFromServer += "\", \"isThereChatlog\": \"yes\", \"chatlog\": \"";
+            
+            String messageFromServerToClient =  messageFromServer + "\", \"isThereChatlog\": \"yes\", \"chatlog\": \"";
             List<String> chatlog;
             try{   
                 chatlog = em.createNamedQuery("Chatlog.findLast15Messages").getResultList();
@@ -79,10 +80,15 @@ public class ChatServer {
                 chatlog = new ArrayList<String>();
             }
             for ( String m : chatlog ){
-                messageFromServer += m + "\\n";
+                messageFromServerToClient += m + "\\n";
             }
-            messageFromServer += "\"}";
-            client.getBasicRemote().sendText(messageFromServer);
+            messageFromServerToClient += "\"}";
+            client.getBasicRemote().sendText(messageFromServerToClient);
+            
+            String messageFromServerToPeers =  messageFromServer + "\", \"isThereChatlog\": \"no\"}";
+            for (Session peer : peers) {
+                peer.getBasicRemote().sendText(messageFromServerToPeers);
+            }
         }
         
         // Caso de que sea el mensaje de que alguien se ha desconectado

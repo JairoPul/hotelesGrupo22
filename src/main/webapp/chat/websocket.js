@@ -43,15 +43,17 @@ websocket.onopen = function (evt) {};
 websocket.onclose = function (evt) {};
 
 websocket.onmessage = function (evt) {
-    const json = JSON.parse(evt.data);
-    
-    if (json.server === "no" && unido) {
-        chatlog.innerHTML += json.message;
-    } else if (json.server === "yes"){
-        if (json.isThereChatlog === "yes") {
-            chatlog.innerHTML = json.chatlog;
+    if (unido) {
+        const json = JSON.parse(evt.data);
+
+        if (json.server === "no") {
+            chatlog.innerHTML += json.message;
+        } else if (json.server === "yes"){
+            if (json.isThereChatlog === "yes") {
+                chatlog.innerHTML = json.chatlog;
+            }
+            users.innerHTML = json.users;
         }
-        users.innerHTML = json.users;
     }
     
 };
