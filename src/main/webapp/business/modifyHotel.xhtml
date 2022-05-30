@@ -10,7 +10,7 @@
         <ui:composition template="./../WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <h:form style="font-size: 15pt;">
+                <h:form style="font-size: 15pt;" rendered="#{loginView.authenticatedUser.isVerified()}">
                     <p:panel header="Datos del hotel">
                         <h:panelGrid id="grid" columns="3">
                             <h:outputLabel for="name" value="Nombre del hotel:"
@@ -69,6 +69,9 @@
                         </h:panelGrid>
                     </p:panel>
                 </h:form>
+                
+                <f:event type="preRenderView" listener="#{loginView.showVerificationMessage}"/>
+                <p:messages id="verificationMessage" closable="false"/>
             </ui:define>
 
         </ui:composition>

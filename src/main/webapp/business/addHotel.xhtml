@@ -15,7 +15,7 @@
                 <f:event type="preRenderView" 
                          listener="#{hotelBackingBean.flush}"/>
                 
-                <h:form style="font-size: 15pt;">
+                <h:form style="font-size: 15pt;" rendered="#{loginView.authenticatedUser.isVerified()}">
                     <p:panel header="Añadir un hotel">
                         
                         <h:panelGrid id="grid" columns="3">
@@ -80,6 +80,9 @@
                         
                     </p:panel>
                 </h:form>
+                
+                <f:event type="preRenderView" listener="#{loginView.showVerificationMessage}"/>
+                <p:messages id="verificationMessage" closable="false"/>
             </ui:define>
 
         </ui:composition>

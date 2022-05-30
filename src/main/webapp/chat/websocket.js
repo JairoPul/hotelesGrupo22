@@ -44,7 +44,8 @@ websocket.onclose = function (evt) {};
 
 websocket.onmessage = function (evt) {
     if (unido) {
-        const json = JSON.parse(evt.data);
+        var mes = evt.data.replace("<","").replace(">","");
+        const json = JSON.parse(mes);
 
         if (json.server === "no") {
             chatlog.innerHTML += json.message;
