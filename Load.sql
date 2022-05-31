@@ -1,7 +1,9 @@
 INSERT INTO user_groups(email, groupname) VALUES
     ('admin@admin.com', 'admin'),
-    ('jfernandezn@gmail.com', 'users'),
-    ('fran52@gmail.com', 'users');
+    ('jfernandez@gmail.com', 'users'),
+    ('fran52@gmail.com', 'users'),
+    ('sunhotels@gmail.com', 'business'),
+    ('happyhotels@gmail.com', 'business');
 
 INSERT INTO users(email, password, name, tel, nif, bdate ) VALUES
     ('jfernandez@gmail.com', 'rI3QaS7ZW6phRbNQ+tXPW2TZ64mGyWdAPs3LibI/9nQ=', 'Javier Fernández', '675234567', '45672345M', '1980-05-05'),
@@ -36,3 +38,11 @@ INSERT INTO chatlog(message) VALUES
     ('Fran: De acuerdo'),
     ('Fran se desconectó'),
     ('Sun Hotels se desconectó');
+
+INSERT INTO hotel(name, city, rooms, price, services, owner) VALUES
+    ('Hotel Bahía', 'Benidorm', '350', '65.89', 'Wifi, Buffet', 'sunhotels@gmail.com'),
+    ('Hotel El Reclamo', 'Valencia', '170', '70.59', 'Wifi, Piscina', 'sunhotels@gmail.com'),
+    ('Hotel Reposo', 'Valencia', '290', '53.49', 'Wifi, Buffet, Spa', 'sunhotels@gmail.com');
+
+INSERT INTO reserve(customer, hotel, day) VALUES
+    ('jfernandez@gmail.com', '1', '2022-06-19');

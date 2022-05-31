@@ -56,24 +56,27 @@ public class LoginView implements Serializable{
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         
         try {
+            System.out.println(email+password);
             request.login(email, password);
+            
+            this.user = userEJB.findByEmail(request.getUserPrincipal().getName());
+
+            if (request.isUserInRole("admin")) {
+                return "/admin/welcomepage?faces-redirect=true";
+            } else if (request.isUserInRole("business")) {
+                return "/business/welcomepage?faces-redirect=true";
+            } else if (request.isUserInRole("users")) {
+                return "/users/welcomepage?faces-redirect=true";
+            } else {
+                return "login";
+            }
         } catch (ServletException e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
                     "Login incorrecto!", null));
             return "login";
         }
         
-        this.user = userEJB.findByEmail(request.getUserPrincipal().getName());
-
-        if (request.isUserInRole("admin")) {
-            return "/admin/welcomepage?faces-redirect=true";
-        } else if (request.isUserInRole("business")) {
-            return "/business/welcomepage?faces-redirect=true";
-        } else if (request.isUserInRole("users")) {
-            return "/users/welcomepage?faces-redirect=true";
-        } else {
-            return "login";
-        }
+        
     }
     
     public String logout() {

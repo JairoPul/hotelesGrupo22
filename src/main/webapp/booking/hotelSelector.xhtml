@@ -11,12 +11,11 @@
         <ui:composition template="./../WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <div style="margin: auto; text-align: center;">
-                <h2 style="font-size: 20pt;">Hoteles en <font color="red">#{booking.city}</font></h2>
+                <h2 style="font-size: 20pt; margin: 5pt;">Hoteles en <font color="red">#{booking.city}</font></h2>
                 <h:form>
                     <h:selectOneRadio value="#{booking.price}" layout="pageDirection" 
                                       required="true" requiredMessage="Por favor, selecciona un hotel" 
-                                      style="font-size: 15pt; margin: auto; margin-bottom: 10pt; text-align: center;">
+                                      style="font-size: 15pt; margin-bottom: 10pt;">
                         <f:selectItems value="#{bookingClientBean.findHotelsInCity(booking.city)}" 
                                        var="s" itemValue="#{booking.storeHotel(s)}" 
                                        itemLabel="#{s.name}"/>
@@ -27,7 +26,6 @@
                                      immediate="true" icon=" ui-icon-arrowreturnthick-1-w" 
                                      style="font-size: 13pt; margin: 5pt;"/>
                 </h:form>
-                </div>
             </ui:define>
 
         </ui:composition>

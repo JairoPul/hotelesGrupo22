@@ -49,7 +49,7 @@ public class Reserve implements Serializable {
     @Column(name = "day")
     @Temporal(TemporalType.DATE)
     private Date day;
-    @JoinColumn(name = "hotel", referencedColumnName = "name")
+    @JoinColumn(name = "hotel", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Hotel hotel;
     @JoinColumn(name = "customer", referencedColumnName = "email")

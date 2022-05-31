@@ -33,11 +33,11 @@ CREATE TABLE Hotel (
 CREATE TABLE Reserve (
     id serial NOT NULL,
     customer varchar(50) NOT NULL,
-    hotel varchar(255) NOT NULL,
+    hotel int NOT NULL,
     day date NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT FK_UserReserve FOREIGN KEY (customer) REFERENCES Users(email),
-    CONSTRAINT FK_HotelReserve FOREIGN KEY (hotel) REFERENCES Hotel(name)
+    CONSTRAINT FK_HotelReserve FOREIGN KEY (hotel) REFERENCES Hotel(id)
 );
 
 CREATE TABLE Chatlog (
@@ -45,13 +45,3 @@ CREATE TABLE Chatlog (
     message varchar(500) NOT NULL
 );
 
-CREATE TABLE Chat_users (
-    id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    name varchar(50) NOT NULL  
-);
-
-INSERT INTO user_groups(email, groupname) VALUES
-    ('admin@admin.com', 'admin');
-
-INSERT INTO users(email, password, name, tel, verified) VALUES
-    ('admin@admin.com','jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=', 'admin', 0, true);
